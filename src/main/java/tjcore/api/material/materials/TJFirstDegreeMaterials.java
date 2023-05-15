@@ -7,6 +7,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.*;
 
+import static gregicality.multiblocks.api.unification.GCYMMaterials.TantalumCarbide;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
@@ -542,13 +543,6 @@ public class TJFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.METALLIC)
                 .colorAverage()
                 .components(Hafnium, 1, Carbon, 1)
-                .build();
-
-        TantalumCarbide = new Material.Builder(25098, "tantalum_carbide")
-                .dust()
-                .iconSet(MaterialIconSet.METALLIC)
-                .colorAverage()
-                .components(Tantalum, 1, Carbon, 1)
                 .build();
 
         SeaborgiumCarbide = new Material.Builder(25099, "seaborgium_carbide")

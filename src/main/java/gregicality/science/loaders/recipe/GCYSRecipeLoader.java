@@ -11,7 +11,7 @@ public class GCYSRecipeLoader {
     public static void init() {
         initChains();
         initOreProcessing();
-        //initCircuits();
+        initCircuits();
         MiscRecipes.init();
         RecipeConflicts.init();
         GCYSComponentRecipes.init();

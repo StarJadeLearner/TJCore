@@ -59,7 +59,7 @@ public final class TJMaterials {
     public static Material HDCS_2;
     public static Material HDCS_3;
     public static Material Pikyonium;
-    public static Material TantalumCarbide;
+    //public static Material TantalumCarbide;
     public static Material HafniumCarbide;
     public static Material SeaborgiumCarbide;
     public static Material TantalumHafniumSeaborgiumCarbide;
