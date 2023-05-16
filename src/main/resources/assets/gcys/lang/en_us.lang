@@ -13,6 +13,7 @@ material.taranium=Taranium
 
 
 # First Degree Materials
+material.braggite=Braggite
 material.lanthanum_oxide=Lanthanum Oxide
 material.praseodymium_oxide=Praseodymium Oxide
 material.neodymium_oxide=Neodymium Oxide

@@ -137,7 +137,7 @@ public class GCYSFirstDegreeMaterials {
                 .build();
 
         AmmoniumHexachloroplatinate = new Material.Builder(3517, "ammonium_hexachloroplatinate")
-                .fluid()
+                .dust()
                 .color(0xFEF0C2)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 2, Hydrogen, 8, Platinum, 1, Chlorine, 6)
@@ -145,7 +145,7 @@ public class GCYSFirstDegreeMaterials {
                 .setFormula("(NH4)2PtCl6", true);
 
         AmmoniumHexachloropalladate = new Material.Builder(3518, "ammonium_hexachloropalladate")
-                .fluid()
+                .dust()
                 .color(0x808080)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 2, Hydrogen, 8, Palladium, 1, Chlorine, 6)
@@ -883,6 +883,56 @@ public class GCYSFirstDegreeMaterials {
                 .color(0x9AE7AD)
                 .components(Lithium,1 , Fluorine, 1)
                 .build();
+        Braggite = new Material.Builder(3629,"braggite")
+                .dust()
+                .ore()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pt,Pd,Ni)S",true);
+        RoastedBraggite = new Material.Builder(3630,"roasted_braggite")
+                .dust()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pt,Pd,Ni)S",true);
+        NickelDepletedBraggite = new Material.Builder(3631,"nickel_roasted_braggite")
+                .dust()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pt,Pd,Ni)S",true);
+        BraggiteSolution = new Material.Builder(3632,"braggite_solution")
+                .fluid()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.SHINY)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pt,Pd)S",true);
+        NickelCarbonyl = new Material.Builder(3633,"nickel_carbonyl")
+                .fluid()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.SHINY)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("Ni(CO)4",true);
+        PlatinumDepletedBraggiteSolution  = new Material.Builder(3634,"platinum_depleted_braggite_solution")
+                .fluid()
+                .color(0x593108)
+                .iconSet(MaterialIconSet.SHINY)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pd)S",true);
+
+
+
+
+
+
+
 
         // TODO Using CEu ID for the ore work
         Alumina = new Material.Builder(383, "alumina")

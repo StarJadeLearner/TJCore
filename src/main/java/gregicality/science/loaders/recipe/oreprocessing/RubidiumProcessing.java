@@ -1,6 +1,6 @@
 package gregicality.science.loaders.recipe.oreprocessing;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.BURNER_REACTOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.HIGH_TEMP_REACTOR_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES;
@@ -34,11 +34,11 @@ public class RubidiumProcessing {
                 .duration(400).EUt(VA[EV]).buildAndRegister();
 
         // Sn + 4Cl -> SnCl4
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, Tin)
                 .fluidInputs(Chlorine.getFluid(4000))
                 .fluidOutputs(StannicChloride.getFluid(1000))
-                .temperature(388)
+                .blastFurnaceTemp(388)
                 .duration(100).EUt(VA[HV]).buildAndRegister();
 
         // 2RbCl(CsCl)2(H2O)2 + 3SnCl4 -> Rb2SnCl6 + 2Cs2SnCl6 + 4H2O

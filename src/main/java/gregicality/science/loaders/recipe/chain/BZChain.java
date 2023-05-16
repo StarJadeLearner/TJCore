@@ -2,7 +2,7 @@ package gregicality.science.loaders.recipe.chain;
 
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.BURNER_REACTOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.HIGH_TEMP_REACTOR_RECIPES;
 import static gregicality.science.api.recipes.GCYSRecipeMaps.CRYOGENIC_REACTOR_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -60,12 +60,12 @@ public class BZChain {
 
     private static void malonicAcid() {
         // C2H4Cl2 + Cl -> C2HCl3 + 3H
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .fluidInputs(Dichloroethane.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(1000))
                 .fluidOutputs(Trichloroethylene.getFluid(1000))
                 .fluidOutputs(Hydrogen.getFluid(3000))
-                .temperature(400)
+                .blastFurnaceTemp(400)
                 .duration(100).EUt(VA[EV]).buildAndRegister();
 
         // C2HCl3 + 2H2O -> C2H3ClO2 + 2HCl

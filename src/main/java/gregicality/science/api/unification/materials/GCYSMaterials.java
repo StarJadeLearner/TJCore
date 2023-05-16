@@ -145,8 +145,13 @@ public class GCYSMaterials {
     public static Material LithiumFluoride;
     public static Material Alumina;
     public static Material ChloroplatinicAcid;
-
-
+    public static Material Braggite;
+    public static Material RoastedBraggite;
+    public static Material NickelDepletedBraggite;
+    public static Material BraggiteSolution;
+    public static Material NickelCarbonyl;
+    public static Material PlatinumDepletedBraggiteSolution;
+    public static Material InsolublePlatinumGroupResidue;
     // Second Degree Materials
     public static Material LaPrNdCeOxidesSolution;
     public static Material ScEuGdSmOxidesSolution;

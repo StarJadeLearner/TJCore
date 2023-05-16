@@ -1,6 +1,5 @@
 package gregicality.science.loaders.recipe.oreprocessing;
 
-import gregicality.science.common.GCYSConfigHolder;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -43,10 +42,10 @@ public class PlatinumGroupProcessing {
         rhodium();
         iridium();
         osmium();
+        removeGTCERecipes();
 
-        if (GCYSConfigHolder.chainOverrides.disablePlatinumProcessing) {
-            removeGTCERecipes();
-        }
+
+
     }
 
     private static void removeGTCERecipes() {
@@ -104,94 +103,56 @@ public class PlatinumGroupProcessing {
     }
 
     private static void sludge() {
-        // PGS + 3(HCl)2HNO3 -> AuPtPd(HCl)6 + RuRhIr2Os(HNO3)3
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .input(dust, PlatinumGroupSludge, 3)
-                .fluidInputs(AquaRegia.getFluid(9000))
-                .output(dust, PlatinumGroupResidue)
-                .fluidOutputs(PlatinumGroupConcentrate.getFluid(1000))
-                .duration(100).EUt(60).buildAndRegister();
 
-        // AuPtPd(HCl)6 -> H2PtPdCl6 + Au + 4H (H lost)
-        CENTRIFUGE_RECIPES.recipeBuilder()
-                .fluidInputs(PlatinumGroupConcentrate.getFluid(1000))
-                .output(dust, PlatinumSludgeResidue)
-                .fluidOutputs(PurifiedPlatinumGroupConcentrate.getFluid(1000))
-                .duration(100).EUt(VA[LV]).buildAndRegister();
-
-        // HCl + NH3 -> NH4Cl
+        ROASTING_RECIPES.recipeBuilder()
+                .input(dust,Braggite,4)
+                .fluidInputs(Oxygen.getFluid(16000))
+                .fluidOutputs(SulfurDioxide.getFluid(8000))
+                .output(dust, RoastedBraggite, 4)
+                .blastFurnaceTemp(3600)
+                .duration(50).EUt(VA[HV])
+                .buildAndRegister();
+        //Roasted Braggite -> Nickel Free Braggite
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
+                .input(dust, RoastedBraggite, 5)
+                .fluidInputs(CarbonMonoxide.getFluid(4000))
+                .output(dust,NickelDepletedBraggite,4)
+                .fluidOutputs(NickelCarbonyl.getFluid(1000))
+                .blastFurnaceTemp(3600)
+                .duration(50).EUt(VA[EV])
+                .buildAndRegister();
+        //Nickel Carboynl -> Nickel
         CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(Ammonia.getFluid(1000))
-                .fluidInputs(HydrochloricAcid.getFluid(1000))
-                .output(dust, AmmoniumChloride, 2)
-                .duration(60).EUt(VA[LV]).buildAndRegister();
+                .fluidInputs(NickelCarbonyl.getFluid(1000))
+                .output(dust, Nickel, 1)
+                .fluidOutputs(CarbonMonoxide.getFluid(4000))
+                .duration(50).EUt(VA[HV])
+                .buildAndRegister();
+        //Depleted Braggite -> Braggite Solution
+        CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust,NickelDepletedBraggite, 4)
+                .fluidInputs(NitricAcid.getFluid(7000))
+                .fluidInputs(HydrochloricAcid.getFluid(11000))
+                .fluidOutputs(BraggiteSolution.getFluid(9000))
+                .duration(50).EUt(VA[HV])
 
-        // H2PtPdCl6 + 2NH4Cl -> 0.625 (NH4)2PtCl6 + 0.375 (NH4)2PdCl6 + 2HCl
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-                .input(dust, AmmoniumChloride, 4)
-                .fluidInputs(PurifiedPlatinumGroupConcentrate.getFluid(1000))
-                .fluidOutputs(AmmoniumHexachloroplatinate.getFluid(625))
-                .fluidOutputs(AmmoniumHexachloropalladate.getFluid(375))
-                .fluidOutputs(HydrochloricAcid.getFluid(2000))
-                .duration(100).EUt(VA[HV]).buildAndRegister();
-
-        // RuRhIr2Os(HNO3)3 + 3NaHSO4 -> RhRu + Ir2Os + 3NaNO3 + 3H2SO4
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .input(dust, PlatinumGroupResidue)
-                .fluidInputs(SodiumBisulfate.getFluid(L * 21))
-                .output(dust, InertMetalMixture)
-                .output(dust, RarestMetalMixture)
-                .output(dust, SodiumNitrate, 5)
-                .fluidOutputs(SulfuricAcid.getFluid(3000))
-                .duration(200).EUt(240).buildAndRegister();
+        .buildAndRegister();
     }
 
     private static void platinum() {
-        // (NH4)2PtCl6 -> H2PtCl6 + 2NH3
-        ELECTROLYZER_RECIPES.recipeBuilder()
-                .fluidInputs(AmmoniumHexachloroplatinate.getFluid(1000))
-                .fluidOutputs(ChloroplatinicAcid.getFluid(1000))
-                .fluidOutputs(Ammonia.getFluid(2000))
-                .duration(120).EUt(VA[LV]).buildAndRegister();
 
-        // Chloroplatinic Acid electrolysis proceeds from CEu
     }
 
     private static void palladium() {
-        // (NH4)2PdCl6 (s) + 2H (g) -> PdCl2 + 2NH3 + 4HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(AmmoniumHexachloropalladate.getFluid(1000))
-                .fluidInputs(Hydrogen.getFluid(2000))
-                .output(dust, PalladiumRaw, 3)
-                .fluidOutputs(Ammonia.getFluid(2000))
-                .fluidOutputs(HydrochloricAcid.getFluid(4000))
-                .duration(100).EUt(VA[MV]).buildAndRegister();
-
-        // CH3OH + CO -> HCO2CH3
-        CHEMICAL_RECIPES.recipeBuilder()
-                .notConsumable(dust, SodiumHydroxide)
-                .fluidInputs(Methanol.getFluid(1000))
-                .fluidInputs(CarbonMonoxide.getFluid(1000))
-                .fluidOutputs(MethylFormate.getFluid(1000))
-                .duration(16).EUt(VA[LV]).buildAndRegister();
-
-        // HCO2CH3 + H2O -> HCOOH + CH3OH
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+         // HCO2CH3 + H2O -> HCOOH + CH3OH
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .fluidInputs(MethylFormate.getFluid(1000))
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(FormicAcid.getFluid(1000))
                 .fluidOutputs(Methanol.getFluid(1000))
-                .pressure(4.053E+6).temperature(353)
+                .blastFurnaceTemp(353)
                 .duration(50).EUt(VA[LV]).buildAndRegister();
 
-        // PdCl2 + HCOOH -> Pd + 2HCl + CO2
-        CHEMICAL_RECIPES.recipeBuilder()
-                .input(dust, PalladiumRaw, 3)
-                .fluidInputs(FormicAcid.getFluid(1000))
-                .output(dust, Palladium)
-                .fluidOutputs(HydrochloricAcid.getFluid(2000))
-                .fluidOutputs(CarbonDioxide.getFluid(1000))
-                .duration(250).EUt(VA[LV]).buildAndRegister();
     }
 
     private static void ruthenium() {

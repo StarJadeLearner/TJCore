@@ -1,6 +1,6 @@
 package gregicality.science.loaders.recipe.chain;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.BURNER_REACTOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.HIGH_TEMP_REACTOR_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.EthyleneGlycol;
 import static gregicality.science.api.unification.materials.GCYSMaterials.EthyleneOxide;
 import static gregtech.api.GTValues.HV;
@@ -13,13 +13,13 @@ public class EthyleneGlycolChain {
 
     public static void init() {
         // 7C2H4 + 12O -> 6C2H4O + 2CO2 + 2H2O
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, Silver)
                 .fluidInputs(Ethylene.getFluid(7000))
                 .fluidOutputs(EthyleneOxide.getFluid(6000))
                 .fluidOutputs(CarbonDioxide.getFluid(2000))
                 .fluidOutputs(Water.getFluid(2000))
-                .temperature(450).pressure(2_500_000)
+                .blastFurnaceTemp(450)
                 .duration(150).EUt(VA[HV]).buildAndRegister();
 
         // The OMEGA Process (simplified)
