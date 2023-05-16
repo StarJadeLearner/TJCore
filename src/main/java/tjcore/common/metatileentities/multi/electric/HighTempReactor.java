@@ -50,21 +50,25 @@ public class HighTempReactor extends RecipeMapMultiblockController implements IH
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                 .aisle(
-                        "HHH",
-                        "HHH",
-                        "HSH")
+                        "F   F",
+                        "     ",
+                        "F   F")
                 .aisle(
-                        "HOH",
-                        "O O",
-                        "HOH")
+                        "HHHHH",
+                        "HOOOH",
+                        "HHSHH")
                 .aisle(
-                        "HOH",
-                        "O O",
-                        "HOH")
+                        "HOOOH",
+                        "H   H",
+                        "HOOOH")
                 .aisle(
-                        "HHH",
-                        "HHH",
-                        "HHH")
+                        "HHHHH",
+                        "HOOOH",
+                        "HHHHH")
+//                .aisle(
+//                        "HHH",
+//                        "HHH",
+//                        "HHH")
                 .where('S', selfPredicate())
                 .where('#', TraceabilityPredicate.ANY)
                 .where(' ',TraceabilityPredicate.AIR)
