@@ -225,7 +225,7 @@ public class MetaTileEntityAlternator extends MultiblockWithDisplayBase implemen
                 joinNet();
             } else if (axleWhole != null){
                 consume();
-                energyOut.addEnergy((long) euOut);
+                energyOut.addEnergy((long) Math.min(euOut, outputCap));
             }
         }
         super.update();

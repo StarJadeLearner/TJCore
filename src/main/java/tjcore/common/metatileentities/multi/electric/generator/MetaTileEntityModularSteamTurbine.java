@@ -237,18 +237,20 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
             if (tankIn.getFluid() != null) {
                 if (tankIn.getFluid().isFluidEqual(Steam.getFluid(1))) {
                     int steamQuantity = tankIn.getFluidAmount();
-                    float maxRPS = (float) Math.min(Math.pow(4, bearingTier), Math.pow(4, turbineTier + 1));
-                    steamToConsume = (int) Math.pow(4, turbineTier + 2) * 16;
+                    float maxRPS = (float) Math.min(Math.pow(4, bearingTier), Math.pow(4, turbineTier + 1)) * 2;
+                    steamToConsume = (int) Math.pow(4, turbineTier + 4);
                     maxSteamToConsume = steamToConsume;
                     steamToConsume = Math.min(steamToConsume, steamQuantity);
                     tankIn.drain(steamToConsume, true);
-                    this.rps = this.torque > 0.025 ? maxRPS : 0;
+                    this.rps = Math.max(this.torque > 0.025 ? maxRPS : 0, rps);
                     this.torque = (float) Math.min(Math.pow(4, bearingTier) * 2, Math.pow(4, turbineTier)) * steamToConsume / maxSteamToConsume;
                 }
             }
+            if (steamToConsume < maxSteamToConsume) {
+                if (rps > speedDecrement) rps -= speedDecrement * 4 * (5-bearingTier);
+                else if (rps < 0-speedDecrement) rps += speedDecrement * 4 * (5-bearingTier);
+                else rps = 0;
+            }
         }
-        if (rps > speedDecrement) rps -= speedDecrement * 4 * (5-bearingTier);
-        else if (rps < 0-speedDecrement) rps += speedDecrement * 4 * (5-bearingTier);
-        else rps = 0;
     }
 }
