@@ -62,7 +62,7 @@ public class TJMetaTileEntities {
     public static MetaTileEntityItemPipeline ITEM_PIPELINE;
     public static MetaTileEntityEnergyPipeline ENERGY_PIPELINE;
     public static HighTempReactor HIGH_TEMP_REACTOR;
-
+    public static LargeDryer LARGE_DRYER;
     public static Loom LOOM;
 
     public static void init() {
@@ -89,10 +89,12 @@ public class TJMetaTileEntities {
         ITEM_PIPELINE = registerMetaTileEntity(12057, new MetaTileEntityItemPipeline(tjcoreID("item_pipeline")));
         ENERGY_PIPELINE = registerMetaTileEntity(12058, new MetaTileEntityEnergyPipeline(tjcoreID("energy_pipeline")));
         HIGH_TEMP_REACTOR = registerMetaTileEntity(12059, new HighTempReactor(tjcoreID("high_temp_reactor")));
+        LARGE_DRYER = registerMetaTileEntity(12060, new LargeDryer(tjcoreID("large_dryer")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
         registerSimpleMetaTileEntity(DRYER, 12110, "dryer", DRYER_RECIPES, TJTextures.ROASTER_OVERLAY, true);
+
     }
 
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing, Function<Integer, Integer> tankScalingFunction) {

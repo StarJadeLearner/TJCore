@@ -1,5 +1,7 @@
 package tjcore.common.recipes;
 
+import gregicality.multiblocks.common.block.GCYMMetaBlocks;
+import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
@@ -248,6 +250,21 @@ public class MachineRecipes {
                 'F', new ItemStack(Blocks.FURNACE),
                 'W', OreDictUnifier.get(cableGtSingle, Copper),
                 'C', new UnificationEntry(circuit, tierCircuitNames[HV])
+        );
+        ModHandler.addShapedRecipe("high_temp_reactor", HIGH_TEMP_REACTOR.getStackForm(),
+                "HHH", "CFC", "WCW",
+                'H', GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.CORROSION_PROOF_CASING),
+                'F', new ItemStack(Blocks.FURNACE),
+                'W', OreDictUnifier.get(cableGtSingle, Aluminium),
+                'C', new UnificationEntry(circuit, tierCircuitNames[HV])
+        );
+        ModHandler.addShapedRecipe("large_dryer", LARGE_DRYER.getStackForm(),
+                "HHH", "SFS", "WCW",
+                'H', MetaBlocks.METAL_CASING.getItemVariant(INVAR_HEATPROOF),
+                'F', MetaTileEntities.HULL[EV].getStackForm(),
+                'W', OreDictUnifier.get(cableGtSingle, Aluminium),
+                'S', new UnificationEntry(spring, Aluminium),
+                'C', new UnificationEntry(circuit, tierCircuitNames[EV])
         );
         ModHandler.addShapelessRecipe("magnetic_iron_block", OreDictUnifier.get(block, IronMagnetic),
                 OreDictUnifier.get(ingot, Iron),

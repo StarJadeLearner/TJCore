@@ -3,6 +3,7 @@ package tjcore.common.metatileentities.multi.electric;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
+import gregicality.science.api.recipes.GCYSRecipeMaps;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic;
@@ -21,7 +22,9 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.util.ResourceLocation;
@@ -37,13 +40,13 @@ import javax.annotation.Nonnull;
 
 import java.util.List;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.HIGH_TEMP_REACTOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.DRYER_RECIPES;
 import static gregtech.api.pattern.TraceabilityPredicate.HEATING_COILS;
 
-public class HighTempReactor extends RecipeMapMultiblockController implements IHeatingCoil {
+public class LargeDryer extends RecipeMapMultiblockController implements IHeatingCoil {
     private int multiBlastTemp;
-    public HighTempReactor(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, HIGH_TEMP_REACTOR_RECIPES);
+    public LargeDryer(ResourceLocation metaTileEntityId) {
+        super(metaTileEntityId, GCYSRecipeMaps.LARGE_DRYER_RECIPES);
         recipeMapWorkable = new HeatingCoilRecipeLogic(this);
     }
 
@@ -51,33 +54,38 @@ public class HighTempReactor extends RecipeMapMultiblockController implements IH
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                 .aisle(
-                        "F   F",
-                        "     ",
-                        "F   F")
-                .aisle(
                         "HHHHH",
-                        "HOOOH",
+                        "HHHHH",
+                        "HHHHH",
+                        "HHHHH",
                         "HHSHH")
                 .aisle(
-                        "HOOOH",
-                        "H   H",
-                        "HOOOH")
+                        "HGGGH",
+                        "G   G",
+                        "G   G",
+                        "G   G",
+                        "HGGGH")
+                .aisle(
+                        "HGGGH",
+                        "G   G",
+                        "G   G",
+                        "G   G",
+                        "HGGGH")
                 .aisle(
                         "HHHHH",
                         "HOOOH",
+                        "HOOOH",
+                        "HOOOH",
                         "HHHHH")
-//                .aisle(
-//                        "HHH",
-//                        "HHH",
-//                        "HHH")
                 .where('S', selfPredicate())
                 .where('#', TraceabilityPredicate.ANY)
                 .where(' ',TraceabilityPredicate.AIR)
                 .where('O', HEATING_COILS.get())
-                .where('C', states(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.CORROSION_PROOF_CASING)))
-                .where('H', states(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.CORROSION_PROOF_CASING))
+                .where('C', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF)))
+                .where('H', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
                         .or(autoAbilities()))
                 .where('F', states(MetaBlocks.FRAMES.get(Materials.Invar).getBlock(Materials.Invar)))
+                .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS)))
                 .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
                 .build();
     }
@@ -120,12 +128,12 @@ public class HighTempReactor extends RecipeMapMultiblockController implements IH
 
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
-        return GCYMTextures.CORROSION_PROOF_CASING;
+        return Textures.HEAT_PROOF_CASING;
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntityID) {
-        return new HighTempReactor(this.metaTileEntityId);
+        return new LargeDryer(this.metaTileEntityId);
     }
 
     @Override

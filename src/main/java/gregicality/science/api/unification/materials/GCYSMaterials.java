@@ -152,6 +152,33 @@ public class GCYSMaterials {
     public static Material NickelCarbonyl;
     public static Material PlatinumDepletedBraggiteSolution;
     public static Material InsolublePlatinumGroupResidue;
+    public static Material TetraamminePalladiumDichlroide;
+    public static Material RhodiumDepletedPlatinumGroupResidue;
+    public static Material RhodiumRutheniumOsmiumDepletedPlatinumGroupResidue;
+    public static Material RhodiumSulfateSolution;
+    public static Material CrudeRhodium;
+    public static Material SodiumHexachlororhodate;
+    public static Material SodiumRhuthenatePerosmateSolution;
+    public static Material RutheniumOsmiumTetroxidesSolution;
+    public static Material SodiumRuthenatePerosmateSolution;
+    public static Material ChlororuthenicAcidOsmiumTetroxideSolution;
+    public static Material ImpureOsmiumTetroxide;
+    public static Material ChlororuthenicAcid;
+    public static Material AmmoniumHexachlororuthenate;
+    public static Material SodiumOsmate;
+    public static Material TetraammineOsmylChloride;
+    public static Material BariumPeroxide;
+    public static Material ChloroiridicAcid;
+    public static Material AmmoniumHexachloroiridate;
+    public static Material DehydroascorbicAcid;
+    public static Material ZincSulfate;
+    public static Material AscorbicAcid;
+
+
+
+
+
+
     // Second Degree Materials
     public static Material LaPrNdCeOxidesSolution;
     public static Material ScEuGdSmOxidesSolution;
