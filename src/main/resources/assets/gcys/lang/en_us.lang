@@ -13,6 +13,34 @@ material.taranium=Taranium
 
 
 # First Degree Materials
+material.braggite=Braggite
+material.roasted_braggite=Roasted Braggite
+material.nickel_depleted_braggite=Nickel Depleted Braggite
+material.braggite_solution=Braggite Solution
+material.nickel_carbonyl=Nickel Carbonyl
+material.rhodium_depleted_platinum_group_residue=Rhodium Depleted Platinum Group Residue
+material.rhodium_ruthenium_osmium_depleted_platinum_group_residue=Rhodium Ruthenium Osmium Depleted Platinum Group Residue
+material.rhodium_sulfate_soltion=Rhodium Sulfate Solution
+material.crude_rhodium=Crude Rhodium
+material.dehydroascorbic_acid=Dehydroascorbic Acid
+material.sodium_hexachlororhodate=Sodium Hexachlororhodate
+material.sodium_rhuthenate_perosmate_solution=Sodium Ruthenate Perosmate Solution
+material.ruthenium_osmium_tetroxides_solution= Ruthenium Osmium Tetroxides Solution
+material.sodium_ruthenate_perosmate_solution=Sodium Ruthenate Perosmate Solution
+material.chlororuthenic_acid_osmium_tetroxide_solution=Chlororuthenic Acid Osmium Tetroxide Solution
+material.impure_osmium_tetroxide=Impure Osmium Tetroxide
+material.chlororuthenic_acid=Chlororuthenic Acid
+material.ammonium_hexachlororuthenate=Ammonium Hexachlororuthenate
+material.sodium_osmate=Sodium Osmate
+material.ascorbic_acid=Ascorbic Acid
+material.tetraammine_osmyl_chloride=Tetraammine Osmyl Chloride
+material.barium_peroxide=Barium Peroxide
+material.chloroiridic_acid=Chloroiridic Acid
+material.ammonium_hexachloroiridate=Ammonium Hexachloroiridate
+material.zinc_sulfate=Zinc Sulfate
+material.platinum_depleted_braggite_solution=Platinum Depleted Braggite Solution
+material.insoluble_platinum_group_residue=Insoluble Platinum Group Residue
+material.tetraammine_palladium_dichloride=Tetraammine Palladium Dichloride
 material.lanthanum_oxide=Lanthanum Oxide
 material.praseodymium_oxide=Praseodymium Oxide
 material.neodymium_oxide=Neodymium Oxide

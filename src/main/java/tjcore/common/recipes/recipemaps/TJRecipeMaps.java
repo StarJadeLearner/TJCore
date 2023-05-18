@@ -20,6 +20,7 @@ public class TJRecipeMaps {
     public static final RecipeMap<SimpleRecipeBuilder> MEGA_FUSION_RECIPES = new RecipeMap<>("mega_fusion", 0, 1, 0, 3, 0, 4, 0, 3, new SimpleRecipeBuilder(), false);
     public static final RecipeMap<SimpleRecipeBuilder> SURFACE_ROCK_DRILL_RECIPES = new RecipeMap<>("surface_rock_drill", 0, 12, 1, 1, 0, 0, 0, 0, new SimpleRecipeBuilder(), false);
     public static final RecipeMap<SimpleRecipeBuilder> LAMINATOR_RECIPES = new RecipeMap<>("laminator", 1, 6, 1, 2, 0, 2, 0, 0, new SimpleRecipeBuilder(), false).setSound(GTSoundEvents.ASSEMBLER);
+    public static final RecipeMap<SimpleRecipeBuilder> PRESSURE_REACTOR_RECIPES = new RecipeMap<>("pressure_reactor", 0, 3, 0, 3, 0, 3, 0, 3, new SimpleRecipeBuilder(), false).setSound(GTSoundEvents.ASSEMBLER);
     public static final RecipeMap<BlastRecipeBuilder> ROASTING_RECIPES = new RecipeMap<>("roaster", 0, 3, 0,3,0,3,0,3, new BlastRecipeBuilder(), false).setSlotOverlay(false, false, GuiTextures.FURNACE_OVERLAY_1).setSlotOverlay(true, false, GuiTextures.OUT_SLOT_OVERLAY).setSound(GTSoundEvents.FURNACE);
     public static final RecipeMap<PrimitiveRecipeBuilder> PRIMITIVE_ROASTING_RECIPES = new RecipeMap<>("primitive_roaster", 0, 3, 0, 3, 0, 1, 0, 1, new PrimitiveRecipeBuilder(), false).setSlotOverlay(false, false, GuiTextures.FURNACE_OVERLAY_1).setSlotOverlay(true, false, GuiTextures.OUT_SLOT_OVERLAY).setProgressBar(GuiTextures.PROGRESS_BAR_COKE_OVEN, ProgressWidget.MoveType.HORIZONTAL).setSound(GTSoundEvents.FURNACE);
 

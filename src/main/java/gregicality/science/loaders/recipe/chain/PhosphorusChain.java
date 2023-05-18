@@ -18,14 +18,14 @@ public class PhosphorusChain {
 
     private static void phosphorus() {
         // 2Ca3(PO4)2 + 6SiO2 + 5C -> 6CaSiO3 + 5CO2 + P4
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, TricalciumPhosphate, 10) //TODO cursed decomp
                 .input(dust, SiliconDioxide, 18)
                 .input(dust, Carbon, 5)
                 .output(dust, Wollastonite, 30)
                 .output(gem, WhitePhosphorus)
                 .fluidOutputs(CarbonDioxide.getFluid(5000))
-                .temperature(1073)
+                .blastFurnaceTemp(1073)
                 .duration(200).EUt(VA[MV]).buildAndRegister();
 
         //TODO find better recipe
@@ -42,10 +42,10 @@ public class PhosphorusChain {
                 .duration(400).EUt(VA[HV]).buildAndRegister();
 
         //TODO implosion?
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(gem, WhitePhosphorus)
                 .output(gem, BlackPhosphorus)
-                .pressure(1.2159E9).temperature(524)
+                .blastFurnaceTemp(900)
                 .duration(100).EUt(VA[IV]).buildAndRegister();
 
         MOLECULAR_BEAM_RECIPES.recipeBuilder()
