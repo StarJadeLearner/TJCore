@@ -212,6 +212,7 @@ item.polyacrylonitrile.dustSmall=Small Pile of Polyacrylonitrile Pulp
 item.polyacrylonitrile.dust=Pile of Polyacrylonitrile Pulp
 
 # machines
+tjcore.machine.large_dryer.name=Large Dryer
 tjcore.machine.primitive_tree_farmer.name=Primitive Tree Farm
 tjcore.machine.printer.lv.name=Basic 3d Printer
 tjcore.machine.printer.mv.name=Advanced 3D Printer I
@@ -273,7 +274,7 @@ tjcore.machine.energy_pipeline.description=Pipelines are a "wireless" p2p distri
 
 tjcore.machine.creative_rotation.name=Creative Rotation Source
 tjcore.machine.gearbox.name=Rotation Gearbox
-
+tjcore.machine.high_temp_reactor.name=High Temperature Chemical Reactor
 # recipemaps
 recipemap.spinning_machine.name=Spooling Recipes
 recipemap.steam_assembler.name=Steam Component Assembler

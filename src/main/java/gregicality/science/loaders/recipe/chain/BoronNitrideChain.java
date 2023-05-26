@@ -51,11 +51,11 @@ public class BoronNitrideChain {
                 .buildAndRegister();
 
         // Li + H -> LiH
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, Lithium)
                 .fluidInputs(Hydrogen.getFluid(1000))
                 .output(ingot, LithiumHydride)
-                .temperature(873)
+                .blastFurnaceTemp(873)
                 .duration(300)
                 .EUt(VA[HV])
                 .buildAndRegister();
@@ -90,13 +90,13 @@ public class BoronNitrideChain {
                 .buildAndRegister();
 
         // B2O3 + 3C + 6Cl -> 2BCl3 + 3CO
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, BoronTrioxide, 5)
                 .input(dust, Carbon, 3)
                 .fluidInputs(Chlorine.getFluid(6000))
                 .fluidOutputs(BoronTrichloride.getFluid(2000))
                 .fluidOutputs(CarbonMonoxide.getFluid(3000))
-                .temperature(774)
+                .blastFurnaceTemp(774)
                 .duration(90)
                 .EUt(VA[HV])
                 .buildAndRegister();

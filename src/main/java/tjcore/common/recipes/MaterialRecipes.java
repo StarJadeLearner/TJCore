@@ -128,7 +128,7 @@ public class MaterialRecipes {
         CHEMICAL_RECIPES.recipeBuilder()
                 .duration(80)
                 .EUt(VA[MV])
-                .input(dust, BariumOxide)
+                .input(dust, BariumOxide,5)
                 .fluidInputs(HydrofluoricAcid.getFluid(2000))
                 .output(dust, BariumDifluoride, 3)
                 .fluidOutputs(Water.getFluid(1000))

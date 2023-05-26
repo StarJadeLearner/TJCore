@@ -3,7 +3,7 @@ package gregicality.science.loaders.recipe.chain;
 import gregtech.api.GTValues;
 
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.BURNER_REACTOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.HIGH_TEMP_REACTOR_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregicality.science.api.unification.ore.GCYSOrePrefix.seedCrystal;
 import static gregtech.api.GTValues.*;
@@ -30,11 +30,12 @@ public class MagneticsChain {
                 .duration(60).EUt(VA[IV]).buildAndRegister();
 
         // Pu + PH3 -> PuP + 6H
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, PlutoniumTrihydride, 4)
                 .fluidInputs(Phosphine.getFluid(1000))
                 .output(ingot, PlutoniumPhosphide, 2)
                 .fluidOutputs(Hydrogen.getFluid(6000))
+                .blastFurnaceTemp(7800)
                 .duration(60).EUt(VA[IV]).buildAndRegister();
     }
 
@@ -56,11 +57,11 @@ public class MagneticsChain {
                 .duration(50).EUt(60).buildAndRegister();
 
         // 2Fe + 3O -> Fe2O3
-        BURNER_REACTOR_RECIPES.recipeBuilder()
+        HIGH_TEMP_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, Iron, 2)
                 .fluidInputs(Oxygen.getFluid(3000))
                 .output(dust, FerricOxide, 5)
-                .temperature(473)
+                .blastFurnaceTemp(473)
                 .duration(50).EUt(120).buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder()
