@@ -21,8 +21,8 @@ public class TJCoreRecipeHandler {
         if (Loader.isModLoaded("draconicevolution")) {
             ArmorInfuserRecipes.register();
         }
-        Ores.RegisterOres();
         MaterialRecipes.register();
+        Ores.RegisterOres();
         MachineRecipes.registerMachines();
         MultiblockHatches.init();
         CircuitryMaterialChains.init();
