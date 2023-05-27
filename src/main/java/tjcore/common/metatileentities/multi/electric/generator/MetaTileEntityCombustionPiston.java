@@ -265,7 +265,7 @@ public class MetaTileEntityCombustionPiston extends MultiblockWithDisplayBase im
                          hasFuel = true;
                          this.rps = (float) Math.pow(4, bearingTier) / 2;
                          duration = stats.duration.apply(bearingTier);
-                         quantity = (int) (stats.quantity.apply(pistonTier) * rps);
+                         quantity = (int) (stats.quantity.apply(pistonTier)*10);
                          quantityReal = Math.min(tankIn.getFluidAmount(), quantity);
                          tankIn.drain(quantityReal, true);
                          this.recipeTickTimer = duration;

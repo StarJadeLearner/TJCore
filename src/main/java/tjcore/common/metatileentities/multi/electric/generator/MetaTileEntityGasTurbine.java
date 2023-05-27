@@ -282,7 +282,7 @@ public class MetaTileEntityGasTurbine extends MultiblockWithDisplayBase implemen
                          hasFuel = true;
                          this.rps = (float) Math.pow(4, bearingTier) / 2;
                          duration = stats.duration.apply(bearingTier);
-                         quantity = (int) (stats.quantity.apply(turbineTier) * rps);
+                         quantity = (int) (stats.quantity.apply(turbineTier)*2);
                          quantityReal = Math.min(tankIn.getFluidAmount(), quantity);
                          tankIn.drain(quantityReal, true);
                          this.recipeTickTimer = duration;
