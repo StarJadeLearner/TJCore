@@ -92,7 +92,7 @@ public class CommonProxy {
         TJOreDictionaryLoader.registerRecipes();
     }
     
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void init(RegistryEvent.Register<IRecipe> event) {
         PipelineManager = new PipelineManager();
         TJCoreRecipeHandler.init();
