@@ -9,6 +9,7 @@ import tjcore.common.recipes.polymers.TJPolymers;
 
 public class TJCoreRecipeHandler {
     public static void init() {
+        TJFuelMaps.initFuelRecipes();
         MaterialOreChains.init();
         CircuitRecipes.registerCircuits();
         TJComponents.init();

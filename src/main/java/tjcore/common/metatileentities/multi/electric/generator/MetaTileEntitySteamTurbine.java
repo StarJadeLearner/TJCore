@@ -35,46 +35,54 @@ import tjcore.common.blocks.TJMetaBlocks;
 import tjcore.common.pipelike.rotation.AxleWhole;
 import tjcore.common.pipelike.rotation.BlockRotationAxle;
 import tjcore.common.pipelike.rotation.TileEntityRotationAxle;
+import tjcore.common.recipes.TJFuelMaps;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-import static gregtech.api.GTValues.V;
-import static gregtech.api.unification.material.Materials.Steam;
+import static tjcore.common.recipes.TJFuelMaps.combustionFuels;
+import static tjcore.common.recipes.TJFuelMaps.steamTurbineFuels;
 
-public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase implements IRotationProvider {
+public class MetaTileEntitySteamTurbine extends MultiblockWithDisplayBase implements IRotationProvider {
 
     private int turbineTier;
     private int bearingTier;
-    private int steamToConsume;
-    private int maxSteamToConsume;
+
+    int duration;
+    int quantity;
+    int quantityReal;
+
     private float rps;
     private float torque;
-    private float speedDecrement = 0.025f;
+    private float speedDecrement = 0.99f;
     private AxleWhole axleWhole;
     private IFluidTank tankIn;
     private BlockPos bearingPos;
+    private int recipeTickTimer = 0;
+    private boolean doublyConnected = false;
+    private boolean hasFuel;
 
-    public MetaTileEntityModularSteamTurbine(ResourceLocation metaTileEntityId) {
+    public MetaTileEntitySteamTurbine(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
-        //this.recipeMapWorkable.setMaximumOverclockVoltage(V[turbineTier + 2]);
     }
 
+
     @Override
-    protected void updateFormedValid() {
+    public boolean hasMaintenanceMechanics() {
+        return false;
     }
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         if (isStructureFormed()) {
-            textList.add(new TextComponentString("Blade Type: " + turbineTier));
-            textList.add(new TextComponentString("Bearing Type: " + bearingTier));
-            textList.add(new TextComponentString("Rotations Per Second: " + rps));
-            textList.add(new TextComponentString("Steam (mb) / tick: " + steamToConsume));
-            textList.add(new TextComponentString("Maximum Steam (mb) / tick: " + maxSteamToConsume));
-            textList.add(new TextComponentString("Torque: " + torque));
             textList.add(new TextComponentString(axleWhole != null ? "Connected to Axle" : "Not Connected to Axle"));
+            textList.add(new TextComponentString("Blade Tier: " + turbineTier));
+            textList.add(new TextComponentString("Bearing Tier: " + bearingTier));
+            textList.add(new TextComponentString("Rotations Per Second: " + rps));
+            textList.add(new TextComponentString("Torque: " + torque));
+            textList.add(new TextComponentString(hasFuel ? "Consumption: \nMax: " + quantity + "mb / " + (duration == 1 ? "" : duration) + "t" : "Invalid or No Fuel"));
+            textList.add(new TextComponentString(hasFuel ?"Real: "  + quantityReal + "mb / " + (duration == 1 ? "" : duration) + "t" : ""));
         }
         super.addDisplayText(textList);
     }
@@ -98,41 +106,40 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     }
 
     protected BlockPattern createStructurePattern() {
-        return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.DOWN)
+        return FactoryBlockPattern.start(RelativeDirection.BACK, RelativeDirection.RIGHT, RelativeDirection.DOWN)
                 .aisle(
-                        "  EEE   ",
-                        " EEEEE  ",
-                        "  EEE   ")
+                        " EEE  ",
+                        "EEEEE ",
+                        " EEE  ")
                 .aisle(
-                        " EE EE  ",
-                        "PPBBBE  ",
-                        " EE EE  ")
+                        "EE EE ",
+                        "PBBBE ",
+                        "EE EE ")
                 .aisle(
-                        " E   E S",
-                        " EBRBE S",
-                        " E   E S")
+                        "E   E ",
+                        "EBRBE ",
+                        "E   E ")
                 .aisle(
-                        " EE EE S",
-                        " EBBBPPP",
-                        " EE EE T")
+                        "EE EES",
+                        "EBBBPT",
+                        "EE EES")
                 .aisle(
-                        "  EEE  S",
-                        " EEEEE S",
-                        "  EEE  S")
+                        " EEE S",
+                        "EEEEES",
+                        " EEE S")
                 .where(' ', TraceabilityPredicate.ANY)
                 .where('~', TraceabilityPredicate.AIR)
                 .where('E', states(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.STEAM_CASING)))
                 .where('T', selfPredicate())
                 .where('S', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
-                        .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(1))
-                        .or(abilities(MultiblockAbility.MAINTENANCE_HATCH).setMinGlobalLimited(1).setMaxGlobalLimited(1)))
+                        .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(1)))
                 .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE)))
                 .where('R', bearings())
                 .where('B', blades())
                 .build();
     }
 
-    public TraceabilityPredicate blades() {
+    private TraceabilityPredicate blades() {
         return new TraceabilityPredicate(blockWorldState -> {
             IBlockState blockState = blockWorldState.getBlockState();
             Block block = blockState.getBlock();
@@ -148,7 +155,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
                         .toArray(BlockInfo[]::new)));
     }
 
-    public TraceabilityPredicate bearings() {
+    private TraceabilityPredicate bearings() {
         return new TraceabilityPredicate(blockWorldState -> {
             IBlockState blockState = blockWorldState.getBlockState();
             Block block = blockState.getBlock();
@@ -171,6 +178,18 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     }
 
     @Override
+    public boolean isStructureFormed() {
+        boolean formed = super.isStructureFormed();
+        if (!formed && axleWhole != null) {
+            axleWhole.removeProvider(this);
+            if(doublyConnected) {
+                axleWhole.deleteNetAndCreateNew(bearingPos);
+            }
+        }
+        return formed;
+    }
+
+    @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), true, true);
@@ -184,7 +203,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntityModularSteamTurbine(metaTileEntityId);
+        return new MetaTileEntitySteamTurbine(metaTileEntityId);
     }
 
     @Override
@@ -213,7 +232,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
                 if (getWorld().getBlockState(pos).getBlock() instanceof BlockRotationAxle) {
                     if (axleWhole == null) {
                         axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
-                    } else {
+                    } else if (axleWhole != ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole()) {
                         axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
                     }
                     if(axleWhole != null) {
@@ -225,32 +244,36 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void updateFormedValid() {
         if (!getWorld().isRemote && isStructureFormed()) {
-            if (axleWhole == null) {
+            if (!doublyConnected) {
                 joinNet();
             }
-            else {
+            if (axleWhole != null) {
                 pushRotation(rps, torque);
             }
-            if (tankIn.getFluid() != null) {
-                if (tankIn.getFluid().isFluidEqual(Steam.getFluid(1))) {
-                    int steamQuantity = tankIn.getFluidAmount();
-                    float maxRPS = (float) Math.min(Math.pow(4, bearingTier), Math.pow(4, turbineTier + 1)) * 2;
-                    steamToConsume = (int) Math.pow(4, turbineTier + 4);
-                    maxSteamToConsume = steamToConsume;
-                    steamToConsume = Math.min(steamToConsume, steamQuantity);
-                    tankIn.drain(steamToConsume, true);
-                    this.rps = Math.max(this.torque > 0.025 ? maxRPS : 0, rps);
-                    this.torque = (float) Math.min(Math.pow(4, bearingTier) * 2, Math.pow(4, turbineTier)) * steamToConsume / maxSteamToConsume;
+            if (recipeTickTimer == 0) {
+                if (tankIn.getFluid() != null) {
+                    TJFuelMaps.TJFuelBurnStats stats = combustionFuels.get(tankIn.getFluid().getFluid());
+                    if (stats != null) {
+                         this.rps = (float) Math.pow(4, bearingTier) / 2;
+                         duration = stats.duration.apply(bearingTier);
+                         quantity = (int) (stats.quantity.apply(turbineTier) * rps);
+                         quantityReal = Math.min(tankIn.getFluidAmount(), quantity);
+                         tankIn.drain(quantityReal, true);
+                         this.recipeTickTimer = duration;
+                         hasFuel = true;
+                         this.torque = (float) Math.pow(4, turbineTier) * ((float) quantityReal / (float) quantity);
+                    } else {
+                        rps = rps > 0.25 ? rps * speedDecrement : 0;
+                        hasFuel = false;
+                    }
+                } else {
+                    hasFuel = false;
+                    rps = rps > 0.25 ? rps * speedDecrement : 0;
                 }
             }
-            if (steamToConsume < maxSteamToConsume) {
-                if (rps > speedDecrement) rps -= speedDecrement * 4 * (5-bearingTier);
-                else if (rps < 0-speedDecrement) rps += speedDecrement * 4 * (5-bearingTier);
-                else rps = 0;
-            }
+            if (recipeTickTimer > 0) {recipeTickTimer -= 1;}
         }
     }
 }

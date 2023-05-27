@@ -178,7 +178,7 @@ public class MetaTileEntityAlternator extends MultiblockWithDisplayBase implemen
             for (BlockPos pos : posArr) {
                 if (getWorld().getBlockState(pos).getBlock() instanceof BlockRotationAxle) {
                     axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
-                    axleWhole.addConsumer(this);
+                    if (axleWhole != null) axleWhole.addConsumer(this);
                 }
             }
         }

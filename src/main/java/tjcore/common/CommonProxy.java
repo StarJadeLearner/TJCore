@@ -54,6 +54,7 @@ public class CommonProxy {
         registry.register(TURBINE_BLADES);
         registry.register(BLOCK_BEARING);
         registry.register(ROTATION_AXLE);
+        registry.register(PISTON_HEAD);
         for (int i = 0; i < longDistanceWireMaterials.length; i++) {
             for (BlockCableLongDistance cable : LONG_DIST_CABLES) {
                 cable.addCableMaterial(longDistanceWireMaterials[i], new WireProperties(Math.toIntExact(V[i + 1]), 16, 0));
@@ -70,6 +71,7 @@ public class CommonProxy {
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
         registry.register(createItemBlock(DRACONIC_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(PISTON_HEAD, VariantItemBlock::new));
         ItemBlock axle = createItemBlock(ROTATION_AXLE, ItemBlockRotationAxle::new);
         //axle.setTileEntityItemStackRenderer(TileEntityRotationAxleTEISR.instance);
         registry.register(axle);

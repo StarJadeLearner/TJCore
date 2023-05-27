@@ -13,7 +13,7 @@ public class AxleWhole implements ISpinnable {
     private List<TileEntityRotationAxle> components = new ArrayList<>();
     private List<IRotationProvider> providers = new ArrayList<>();
     private List<IRotationConsumer> consumers = new ArrayList<>();
-    private final float speedDecrement = 0.025f;
+    private final float speedDecrement = 0.97f;
     public float revolutionsPerSecond = 0.0f;
     private float torque;
     public float angle;
@@ -41,8 +41,8 @@ public class AxleWhole implements ISpinnable {
             }
         }
         if (shouldDecrement) {
-            if (revolutionsPerSecond > speedDecrement) revolutionsPerSecond -= speedDecrement;
-            else if (revolutionsPerSecond < 0 - speedDecrement) revolutionsPerSecond += speedDecrement;
+            if (revolutionsPerSecond > 0.1) revolutionsPerSecond *= speedDecrement;
+            else if (revolutionsPerSecond < -0.1) revolutionsPerSecond *= speedDecrement;
             else revolutionsPerSecond = 0;
         }
     }
@@ -87,7 +87,7 @@ public class AxleWhole implements ISpinnable {
 
 
     public void addProvider(IRotationProvider provider) {
-        providers.add(provider);
+        if(!providers.contains(provider)) providers.add(provider);
     }
     public void addConsumer(IRotationConsumer consumer) {
         consumers.add(consumer);
@@ -101,7 +101,6 @@ public class AxleWhole implements ISpinnable {
         for (TileEntityRotationAxle te : components) {
             te.axleWhole = null;
         }
-
 
         for (TileEntityRotationAxle te : components) {
             if (!te.getPos().equals(posIn))  {
@@ -117,5 +116,9 @@ public class AxleWhole implements ISpinnable {
         for (IRotationConsumer consumer : consumers) {
             consumer.setAxleWhole(null);
         }
+    }
+
+    public void removeProvider(IRotationProvider toRemove) {
+        providers.remove(toRemove);
     }
 }

@@ -1,7 +1,5 @@
 package tjcore.common.metatileentities;
 
-import gregicality.science.api.recipes.GCYSRecipeMaps;
-import gregicality.science.client.render.GCYSTextures;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
@@ -15,7 +13,9 @@ import tjcore.common.TJTextures;
 import tjcore.common.metatileentities.axle.MetaTileEntityCreativeRotation;
 import tjcore.common.metatileentities.multi.electric.*;
 import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityAlternator;
-import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityModularSteamTurbine;
+import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityCombustionPiston;
+import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityGasTurbine;
+import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntitySteamTurbine;
 import tjcore.common.metatileentities.multi.fusion.MegaFusion;
 import tjcore.common.metatileentities.multi.pipeline.MetaTileEntityEnergyPipeline;
 import tjcore.common.metatileentities.multi.pipeline.MetaTileEntityFluidPipeline;
@@ -49,7 +49,9 @@ public class TJMetaTileEntities {
     public static MegaFusion MEGA_FUSION;
     public static SurfaceRockDrill SURFACE_ROCK_DRILL;
     public static ExposureChamber EXPOSURE_CHAMBER;
-    public static MetaTileEntityModularSteamTurbine MODULAR_TURBINE;
+    public static MetaTileEntitySteamTurbine STEAM_TURBINE;
+    public static MetaTileEntityGasTurbine GAS_TURBINE;
+    public static MetaTileEntityCombustionPiston COMBUSTION_PISTON;
     public static PrimitiveTreeFarmer PRIMITIVE_TREE_FARMER;
     public static LargeAlloySmelter LARGE_ALLOY_SMELTER;
 
@@ -77,7 +79,7 @@ public class TJMetaTileEntities {
         STEAM_MIXER_STEEL = registerMetaTileEntity(12040, new SteamMixer(tjcoreID("steam_mixer_steel"), true));
         STEAM_DRYER_BRONZE = registerMetaTileEntity(12041, new SteamDryer(tjcoreID("steam_dryer_bronze"), false));
         STEAM_DRYER_STEEL = registerMetaTileEntity(12042, new SteamDryer(tjcoreID("steam_dryer_steel"), true));
-        MODULAR_TURBINE = registerMetaTileEntity(12043, new MetaTileEntityModularSteamTurbine(tjcoreID("modular_steam_turbine")));
+        STEAM_TURBINE = registerMetaTileEntity(12043, new MetaTileEntitySteamTurbine(tjcoreID("modular_steam_turbine")));
         PRIMITIVE_TREE_FARMER = registerMetaTileEntity(12044, new PrimitiveTreeFarmer(tjcoreID("primitive_tree_farmer")));
         LARGE_ALLOY_SMELTER = registerMetaTileEntity(12050, new LargeAlloySmelter(tjcoreID("large_alloy_smelter")));
         ALTERNATOR = registerMetaTileEntity(12051, new MetaTileEntityAlternator(tjcoreID("alternator")));
@@ -90,6 +92,8 @@ public class TJMetaTileEntities {
         ENERGY_PIPELINE = registerMetaTileEntity(12058, new MetaTileEntityEnergyPipeline(tjcoreID("energy_pipeline")));
         HIGH_TEMP_REACTOR = registerMetaTileEntity(12059, new HighTempReactor(tjcoreID("high_temp_reactor")));
         LARGE_DRYER = registerMetaTileEntity(12060, new LargeDryer(tjcoreID("large_dryer")));
+        GAS_TURBINE = registerMetaTileEntity(12061, new MetaTileEntityGasTurbine(tjcoreID("gas_turbine")));
+        COMBUSTION_PISTON = registerMetaTileEntity(12062, new MetaTileEntityCombustionPiston(tjcoreID("combustion_piston")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);

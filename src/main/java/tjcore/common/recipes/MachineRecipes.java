@@ -11,10 +11,8 @@ import gregtech.api.unification.stack.ItemMaterialInfo;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockMachineCasing;
-import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockSteamCasing;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.items.ToolItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.MetaTileEntityLoader;
@@ -25,7 +23,7 @@ import tjcore.common.blocks.BlockBearing;
 import tjcore.common.blocks.BlockGeneratorCoil;
 import tjcore.common.blocks.BlockTurbineBlades;
 import tjcore.common.blocks.TJMetaBlocks;
-import tjcore.common.pipelike.rotation.TileEntityRotationAxle;
+import tjcore.common.metatileentities.TJMetaTileEntities;
 
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -37,9 +35,10 @@ import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.INVAR_HEAT
 import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.PRIMITIVE_BRICKS;
 import static gregtech.common.blocks.MetaBlocks.FRAMES;
 import static gregtech.common.blocks.MetaBlocks.MACHINE_CASING;
-import static gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV;
 import static gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
+import static gregtech.common.metatileentities.MetaTileEntities.GAS_TURBINE;
+import static gregtech.common.metatileentities.MetaTileEntities.STEAM_TURBINE;
 import static gregtech.loaders.recipe.CraftingComponent.*;
 import static net.minecraft.init.Blocks.IRON_BARS;
 import static tjcore.api.TJComponents.*;
@@ -213,7 +212,7 @@ public class MachineRecipes {
     }
 
     private static void registerMulti() {
-        ModHandler.addShapedRecipe("modular_steam_turbine", MODULAR_TURBINE.getStackForm(),
+        ModHandler.addShapedRecipe("modular_steam_turbine", TJMetaTileEntities.STEAM_TURBINE.getStackForm(),
                 "PGP", "SCS", "TRT",
                 'G', OreDictUnifier.get(gear, Steel),
                 'S', OreDictUnifier.get(screw, GalvanizedSteel),
