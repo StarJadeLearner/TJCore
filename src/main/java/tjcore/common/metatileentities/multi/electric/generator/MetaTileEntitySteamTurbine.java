@@ -262,7 +262,7 @@ public class MetaTileEntitySteamTurbine extends MultiblockWithDisplayBase implem
                     if (stats != null) {
                          this.rps = (float) Math.pow(4, bearingTier) / 2;
                          duration = stats.duration.apply(bearingTier);
-                         quantity = (int) (stats.quantity.apply(turbineTier) * rps);
+                         quantity = (int) (stats.quantity.apply(turbineTier));
                          quantityReal = Math.min(tankIn.getFluidAmount(), quantity);
                          tankIn.drain(quantityReal, true);
                          this.recipeTickTimer = duration;

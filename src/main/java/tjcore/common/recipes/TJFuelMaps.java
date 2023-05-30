@@ -101,59 +101,59 @@ public class TJFuelMaps {
 
         //Combustion Piston Fuels
         combustionFuels.put(RawOil.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 3)
         ));
         combustionFuels.put(OilLight.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 3)
         ));
         combustionFuels.put(SulfuricLightFuel.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.75)
         ));
         combustionFuels.put(Naphtha.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.75)
         ));
         combustionFuels.put(LightFuel.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.5)
         ));
         combustionFuels.put(Toluene.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.5)
         ));
         combustionFuels.put(Ethanol.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.25)
         ));
         combustionFuels.put(Methanol.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.25)
         ));
         combustionFuels.put(Octane.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2.25)
         ));
         combustionFuels.put(BioDiesel.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2)
         ));
         combustionFuels.put(Diesel.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2)
         ));
         combustionFuels.put(CetaneBoostedDiesel.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(4, tier + 2)
         ));
         combustionFuels.put(Gasoline.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(2, tier + 4)
         ));
         combustionFuels.put(HighOctaneGasoline.getFluid(), new TJFuelBurnStats(
-                (tier) -> (tier + 1) * 5,
+                (tier) -> (tier + 1) * 4,
                 (tier) -> (int) Math.pow(2, tier + 4)
         ));
     }

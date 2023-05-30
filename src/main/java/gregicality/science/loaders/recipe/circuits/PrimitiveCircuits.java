@@ -22,15 +22,7 @@ import static gregtech.common.items.MetaItems.VACUUM_TUBE;
 public class PrimitiveCircuits {
 
     public static void init() {
-        ModHandler.addShapelessRecipe("dust_kovar", OreDictUnifier.get(OrePrefix.dust, Kovar, 6),
-                OreDictUnifier.get(OrePrefix.dust, Iron),
-                OreDictUnifier.get(OrePrefix.dust, Iron),
-                OreDictUnifier.get(OrePrefix.dust, Iron),
-                OreDictUnifier.get(OrePrefix.dust, Iron),
-                OreDictUnifier.get(OrePrefix.dust, Nickel),
-                OreDictUnifier.get(OrePrefix.dust, Nickel),
-                OreDictUnifier.get(OrePrefix.dust, Cobalt)
-        );
+
 
         MIXER_RECIPES.recipeBuilder()
                 .input(OrePrefix.dust, Iron, 4)
