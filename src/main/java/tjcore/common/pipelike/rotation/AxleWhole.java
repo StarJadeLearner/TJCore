@@ -60,6 +60,11 @@ public class AxleWhole implements ISpinnable {
             addAxle(axle);
         }
         providers.addAll(toAdd.providers);
+        for(IRotationProvider provider : providers) {
+            provider.joinNet(true);
+        }
+        consumers.addAll(toAdd.consumers);
+
         toAdd.components.clear();
     }
 
@@ -111,10 +116,12 @@ public class AxleWhole implements ISpinnable {
 
         for (IRotationProvider provider : providers) {
             provider.setAxleWhole(null);
+            provider.joinNet(true);
         }
 
         for (IRotationConsumer consumer : consumers) {
             consumer.setAxleWhole(null);
+            consumer.joinNet();
         }
     }
 

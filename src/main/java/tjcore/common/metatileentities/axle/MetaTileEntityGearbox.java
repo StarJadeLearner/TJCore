@@ -76,6 +76,11 @@ public class MetaTileEntityGearbox extends MetaTileEntity implements IRotationPr
     }
 
     @Override
+    public void joinNet(boolean recalculate) {
+        joinNet();
+    }
+
+    @Override
     public void joinNet() {
         inputFaces.clear();
         outputFaces.clear();

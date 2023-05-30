@@ -62,6 +62,7 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
         rotationSpeed = axle.revolutionsPerSecond;
     }
 
+    @Override
     public void joinNet() {
         for(int[] vec : TJValues.adjacentIntArr) {
             TileEntity te = getWorld().getTileEntity(getPos().add(vec[0],vec[1],vec[2]));
@@ -70,6 +71,10 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
                 break;
             }
         }
+    }
+
+    public void joinNet(boolean recalculate) {
+        joinNet();
     }
 
     protected ModularUI createUI(EntityPlayer entityPlayer) {

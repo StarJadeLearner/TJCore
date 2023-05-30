@@ -245,7 +245,10 @@ public class MetaTileEntityGasTurbine extends MultiblockWithDisplayBase implemen
     }
 
     @Override
-    public void joinNet() {
+    public void joinNet(boolean recalculate) {
+        if (recalculate) {
+            doublyConnected = false;
+        }
         if (bearingPos != null) {
             BlockPos[] posArr = new BlockPos[]{
                     bearingPos[0].north(), bearingPos[0].south(), bearingPos[0].east(), bearingPos[0].west(),
@@ -257,6 +260,7 @@ public class MetaTileEntityGasTurbine extends MultiblockWithDisplayBase implemen
                         axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
                     } else if (axleWhole != ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole()) {
                         axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
+                        doublyConnected = true;
                     }
                     if(axleWhole != null) {
                         setAxleWhole(axleWhole);
@@ -270,7 +274,7 @@ public class MetaTileEntityGasTurbine extends MultiblockWithDisplayBase implemen
     public void updateFormedValid() {
         if (!getWorld().isRemote && isStructureFormed()) {
             if (!doublyConnected) {
-                joinNet();
+                joinNet(false);
             }
             if (axleWhole != null) {
                 pushRotation(rps, torque);

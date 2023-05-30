@@ -103,6 +103,7 @@ public class MetaTileEntityCombustionPiston extends MultiblockWithDisplayBase im
         } else {
             this.bearingTier = 0;
         }
+        this.doublyConnected = false;
         this.tankIn = getAbilities(MultiblockAbility.IMPORT_FLUIDS).get(0);
     }
 
@@ -187,6 +188,7 @@ public class MetaTileEntityCombustionPiston extends MultiblockWithDisplayBase im
             axleWhole.removeProvider(this);
             if(doublyConnected) {
                 axleWhole.deleteNetAndCreateNew(bearingPos[0]);
+                axleWhole.deleteNetAndCreateNew(bearingPos[1]);
             }
         }
         return formed;
@@ -228,21 +230,27 @@ public class MetaTileEntityCombustionPiston extends MultiblockWithDisplayBase im
     }
 
     @Override
-    public void joinNet() {
-        if (bearingPos != null) {
-            BlockPos[] posArr = new BlockPos[]{
-                    bearingPos[0].north(), bearingPos[0].south(), bearingPos[0].east(), bearingPos[0].west(),
-                    bearingPos[1].north(), bearingPos[1].south(), bearingPos[1].east(), bearingPos[1].west()
-            };
-            for (BlockPos pos : posArr) {
-                if (getWorld().getBlockState(pos).getBlock() instanceof BlockRotationAxle) {
-                    if (axleWhole == null) {
-                        axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
-                    } else if (axleWhole != ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole()) {
-                        axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
-                    }
-                    if(axleWhole != null) {
-                        setAxleWhole(axleWhole);
+    public void joinNet(boolean recalculate) {
+        if (recalculate) {
+            doublyConnected = false;
+        }
+        if (!doublyConnected) {
+            if (bearingPos != null) {
+                BlockPos[] posArr = new BlockPos[]{
+                        bearingPos[0].north(), bearingPos[0].south(), bearingPos[0].east(), bearingPos[0].west(),
+                        bearingPos[1].north(), bearingPos[1].south(), bearingPos[1].east(), bearingPos[1].west()
+                };
+                for (BlockPos pos : posArr) {
+                    if (getWorld().getBlockState(pos).getBlock() instanceof BlockRotationAxle) {
+                        if (axleWhole == null) {
+                            axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
+                        } else if (axleWhole != ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole()) {
+                            axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
+                            doublyConnected = true;
+                        }
+                        if (axleWhole != null) {
+                            setAxleWhole(axleWhole);
+                        }
                     }
                 }
             }
@@ -252,9 +260,7 @@ public class MetaTileEntityCombustionPiston extends MultiblockWithDisplayBase im
     @Override
     public void updateFormedValid() {
         if (!getWorld().isRemote && isStructureFormed()) {
-            if (!doublyConnected) {
-                joinNet();
-            }
+            joinNet(false);
             if (axleWhole != null) {
                 pushRotation(rps, torque);
             }
