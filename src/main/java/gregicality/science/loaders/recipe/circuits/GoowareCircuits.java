@@ -3,7 +3,7 @@ package gregicality.science.loaders.recipe.circuits;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraftforge.fluids.FluidStack;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregicality.science.common.items.GCYSMetaItems.*;
 import static gregtech.api.GTValues.*;

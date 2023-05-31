@@ -8,7 +8,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraftforge.fml.common.Mod;
 import tjcore.common.metaitem.TJMetaItems;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregicality.science.common.items.GCYSMetaItems.VACUUM_TUBE_COMPONENTS;
 import static gregtech.api.GTValues.*;
@@ -439,47 +439,41 @@ public class Chips {
     }
 
     private static void crystalChip() {
-        //TODO: CARBON - Integrate with starlight in TJ2
         CVD_RECIPES.recipeBuilder()
                 .EUt(VA[LuV])
                 .duration(100)
                 .input(SAPPHIRE_WAFER)
                 .fluidInputs(Methane.getFluid(1000))
-                .notConsumable(Argon.getFluid(1))
                 .output(COATED_SAPPHIRE_WAFER)
                 .fluidOutputs(Hydrogen.getFluid(4000))
+                .atmosphere(4500, 16000, Argon.getFluid())
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .EUt(VA[IV])
                 .duration(100)
                 .input(COATED_SAPPHIRE_WAFER)
-                .fluidInputs(Starlight.getFluid(250))
                 .output(DIRTY_COATED_SAPPHIRE_WAFER)
-                .buildAndRegister();
-
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .EUt(VA[LuV])
-                .duration(60)
-                .input(DIRTY_COATED_SAPPHIRE_WAFER)
                 .fluidInputs(Dysprosium.getFluid(144))
-                .output(CLEANED_COATED_SAPPHIRE_WAFER)
-                .output(ingot, Dysprosium) //TODO 4 Chunks
                 .buildAndRegister();
 
         AUTOCLAVE_RECIPES.recipeBuilder()
-                .EUt(VA[ZPM])
-                .duration(5)
-                .input(CLEANED_COATED_SAPPHIRE_WAFER)
-                .fluidInputs(Helium.getPlasma(150))
+                .EUt(VA[LuV])
+                .duration(60)
+                .input(DIRTY_COATED_SAPPHIRE_WAFER)
+                .input(plate, Amethyst)
+                .notConsumable(plate, SamariumMagnetic)
+                .fluidInputs(Helium.getFluid(250))
                 .output(SAPPHIRE_SUBSTRATE_PREP)
                 .buildAndRegister();
+
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .EUt(VA[IV])
                 .duration(130)
                 .input(SAPPHIRE_SUBSTRATE_PREP)
                 .fluidInputs(AquaRegia.getFluid(250))
+                .fluidOutputs(Dysprosium.getFluid(144))
                 .output(ETCHED_SAPPHIRE_WAFER)
                 .buildAndRegister();
 
@@ -497,10 +491,10 @@ public class Chips {
                 .EUt(VA[LuV])
                 .duration(40)
                 .input(SUPERHEATED_SAPPHIRE_WAFER)
-                .fluidInputs(DistilledWater.getFluid(1000))
-                .output(VIABLE_SAPPHIRE_WAFER)
-                .fluidOutputs(Steam.getFluid(1000))
-                //.chancedOutput(NONVIABLE_SAPPHIRE_WAFER, 5000)
+                .fluidInputs(DistilledWater.getFluid(5))
+                .fluidOutputs(Steam.getFluid(800))
+                .chancedOutput(VIABLE_SAPPHIRE_WAFER, 5000, 0)
+                .chancedOutput(NONVIABLE_SAPPHIRE_WAFER, 5000, 0)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()

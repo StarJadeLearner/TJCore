@@ -8,6 +8,7 @@ import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 
 public class BoronNitrideChain {
 
@@ -121,8 +122,7 @@ public class BoronNitrideChain {
                 .fluidOutputs(Water.getFluid(3000))
                 .duration(400)
                 .EUt(VA[UV])
-                .pressure(0.0000125D)
-                .temperature(1300)
+                .atmosphere(-2000, -250)
                 .buildAndRegister();
 
         // B + N -> BN
@@ -143,8 +143,7 @@ public class BoronNitrideChain {
                 .output(gem, CubicBoronNitride)
                 .duration(100)
                 .EUt(VA[UV])
-                .pressure(18_000_000_000D)
-                .temperature(3501)
+                .atmosphere(4500, 16000, Nitrogen.getFluid())
                 .buildAndRegister();
 
         // B3Cl3H3N3 -> 3 a-BN + 3HCl
@@ -184,8 +183,7 @@ public class BoronNitrideChain {
                 .output(gem, CubicHeterodiamond)
                 .duration(400)
                 .EUt(VA[UHV])
-                .pressure(18_000_000_000D)
-                .temperature(2200)
+                .atmosphere(7000, 16000, Nitrogen.getFluid())
                 .buildAndRegister();
     }
 }

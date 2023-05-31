@@ -7,6 +7,7 @@ import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityFluidHatch;
 import net.minecraft.util.ResourceLocation;
 import tjcore.TJValues;
 import tjcore.common.TJTextures;
@@ -39,6 +40,8 @@ public class TJMetaTileEntities {
     public static SimpleMachineMetaTileEntity[] LAMINATOR = new SimpleMachineMetaTileEntity[GTValues.MAX];
     public static SimpleMachineMetaTileEntity[] SPINNING_MACHINE = new SimpleMachineMetaTileEntity[GTValues.LuV];
     public static SimpleMachineMetaTileEntity[] DRYER = new SimpleMachineMetaTileEntity[GTValues.LuV];
+    public static final MetaTileEntityPressureValve[] PRESSURE_VALVES = new MetaTileEntityPressureValve[5];
+
     public static SteamDryer STEAM_DRYER_BRONZE;
     public static SteamDryer STEAM_DRYER_STEEL;
     public static SteamMixer STEAM_MIXER_BRONZE;
@@ -66,6 +69,7 @@ public class TJMetaTileEntities {
     public static HighTempReactor HIGH_TEMP_REACTOR;
     public static LargeDryer LARGE_DRYER;
     public static Loom LOOM;
+    public static MetaTileEntityCVDUnit CVD_UNIT;
 
     public static void init() {
         STEAM_ASSEMBLER = registerMetaTileEntity(12030, new SteamAssembler(tjcoreID("steam_assembler")));
@@ -94,11 +98,15 @@ public class TJMetaTileEntities {
         LARGE_DRYER = registerMetaTileEntity(12060, new LargeDryer(tjcoreID("large_dryer")));
         GAS_TURBINE = registerMetaTileEntity(12061, new MetaTileEntityGasTurbine(tjcoreID("gas_turbine")));
         COMBUSTION_PISTON = registerMetaTileEntity(12062, new MetaTileEntityCombustionPiston(tjcoreID("combustion_piston")));
+        CVD_UNIT = registerMetaTileEntity(12063, new MetaTileEntityCVDUnit(tjcoreID("cvd_unit")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
         registerSimpleMetaTileEntity(DRYER, 12110, "dryer", DRYER_RECIPES, TJTextures.ROASTER_OVERLAY, true);
-
+        for(int i = 0; i < PRESSURE_VALVES.length; i++) {
+            PRESSURE_VALVES[i] = new MetaTileEntityPressureValve(tjcoreID("pressure_valve_" + GTValues.VN[i + 5].toLowerCase()), i + 5);
+            registerMetaTileEntity(12120 + i, PRESSURE_VALVES[i]);
+        }
     }
 
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing, Function<Integer, Integer> tankScalingFunction) {

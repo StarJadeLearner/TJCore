@@ -1,6 +1,6 @@
 package gregicality.science.loaders.recipe.chain;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.recipes.GCYSRecipeMaps.DRYER_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -59,7 +59,7 @@ public class GalliumNitrideChain {
                 .fluidInputs(Water.getFluid(3000))
                 .output(dust, GalliumTrioxide, 5)
                 .fluidOutputs(Methane.getFluid(3000))
-                .temperature(923)
+                .atmosphere(1500, 2000, Hydrogen.getFluid())
                 .duration(160).EUt(VA[HV]).buildAndRegister();
 
         // Ga2O3 + 2NH3 -> 2GaN + 3H2O
@@ -68,7 +68,7 @@ public class GalliumNitrideChain {
                 .fluidInputs(Ammonia.getFluid(2000))
                 .output(plate, GalliumNitride, 4)
                 .fluidOutputs(Steam.getFluid(3000))
-                .temperature(1023).pressure(10_132_500)
+                .atmosphere(2500, 3500, Ammonia.getFluid())
                 .duration(250).EUt(VA[LuV]).buildAndRegister();
     }
 }

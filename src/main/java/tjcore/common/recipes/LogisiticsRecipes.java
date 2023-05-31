@@ -11,7 +11,7 @@ import static tjcore.common.recipes.recipemaps.TJRecipeMaps.*;
 
 public class LogisiticsRecipes {
     public static void init() {
-        longDistance();
+        //longDistance();
     }
 
 

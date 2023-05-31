@@ -18,6 +18,7 @@ import static gregtech.common.metatileentities.MetaTileEntities.CRACKER;
 import static gregtech.common.metatileentities.MetaTileEntities.DISTILLATION_TOWER;
 import static tjcore.api.material.TJMaterials.*;
 import static tjcore.common.recipes.GTComponents.tierCircuitNames;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 
 public class PetrochemRecipes {
 
@@ -135,6 +136,7 @@ public class PetrochemRecipes {
                 .input(dust, CubicZirconia)
                 .input(dust, Iridium)
                 .output(dust, IridiumOnCubicZirconia)
+                .atmosphere(1250, 6500, Hydrogen.getFluid())
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()

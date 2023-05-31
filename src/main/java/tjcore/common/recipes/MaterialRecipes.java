@@ -15,9 +15,9 @@ import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import tjcore.common.TJConfig;
+import tjcore.common.recipes.recipemaps.TJRecipeMaps;
 
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.recipes.GCYSRecipeMaps.SONICATION_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -28,11 +28,11 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static tjcore.api.material.TJMaterials.*;
 import static tjcore.common.metaitem.TJMetaItems.*;
-import static tjcore.common.recipes.recipemaps.TJRecipeMaps.*;
 
 public class MaterialRecipes {
 
     public static void register() {
+        testRecipes();
         registerCeramics();
         registerMetals();
         registerGlass();
@@ -43,6 +43,10 @@ public class MaterialRecipes {
         registerFarming();
         registerWireCable();
         registerCobalt();
+    }
+
+    private static void testRecipes() {
+
     }
 
     private static void registerSimpleCompounds() {
@@ -63,7 +67,7 @@ public class MaterialRecipes {
                 .chancedOutput(plate, Rubber, 1, 7000, 0)
                 .buildAndRegister();
 
-        CVD_RECIPES.recipeBuilder()
+        TJRecipeMaps.CVD_RECIPES.recipeBuilder()
                 .EUt(VA[LuV])
                 .duration(340)
                 .notConsumable(plate, Gold)
@@ -73,6 +77,7 @@ public class MaterialRecipes {
                 .fluidOutputs(HydroiodicAcid.getFluid(4000))
                 .input(dust, Hafnium)
                 .output(dust, HafniumSilicate)
+                .atmosphere(250, 6500, Nitrogen.getFluid())
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()
@@ -240,7 +245,7 @@ public class MaterialRecipes {
                 .chancedOutput(dustTiny, SynthDiamond, 1500, 100)
                 .buildAndRegister();
 
-        CVD_RECIPES.recipeBuilder()
+        TJRecipeMaps.CVD_RECIPES.recipeBuilder()
                 .EUt(VA[ZPM])
                 .duration(145)
                 .fluidInputs(Methane.getFluid(100), Hydrogen.getFluid(10000))
@@ -505,7 +510,7 @@ public class MaterialRecipes {
                 .fluidOutputs(Cobalt60Iodide.getFluid(50))
                 .buildAndRegister();
 
-        EXPOSURE_CHAMBER_RECIPES.recipeBuilder()
+        TJRecipeMaps.EXPOSURE_CHAMBER_RECIPES.recipeBuilder()
                 .EUt(VA[IV])
                 .duration(180)
                 .input(dust, Cobalt59)

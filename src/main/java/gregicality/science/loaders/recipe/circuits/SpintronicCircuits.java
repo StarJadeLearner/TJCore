@@ -6,7 +6,7 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraftforge.fluids.FluidStack;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.recipes.GCYSRecipeMaps.MOLECULAR_BEAM_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregicality.science.common.items.GCYSMetaItems.*;

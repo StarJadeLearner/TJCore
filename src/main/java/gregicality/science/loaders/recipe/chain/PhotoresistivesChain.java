@@ -1,6 +1,6 @@
 package gregicality.science.loaders.recipe.chain;
 
-import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -96,6 +96,7 @@ public class PhotoresistivesChain {
                 .output(dust, CadmiumSulfide, 2)
                 .fluidOutputs(Ethane.getFluid(1000))
                 .fluidOutputs(Butane.getFluid(1000))
+                .atmosphere(-1500, -500)
                 .duration(80).EUt(VA[LuV]).buildAndRegister();
     }
 
@@ -121,6 +122,7 @@ public class PhotoresistivesChain {
                 .fluidInputs(HydrogenSelenide.getFluid(1000))
                 .output(dust, CadmiumSelenide, 2)
                 .fluidOutputs(Methane.getFluid(2000))
+                .atmosphere(0, 4000, Methane.getFluid())
                 .duration(80).EUt(VA[ZPM]).buildAndRegister();
     }
 }
