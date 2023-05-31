@@ -32,9 +32,7 @@ dependencies {
 
     // Soft Dependencies
 
-    implementation 'mezz.jei:jei_1.12.2:4.16.1.302'
     implementation 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684'
-    implementation rfg.deobf("curse.maven:top-245211:2667280")
     implementation rfg.deobf("curse.maven:ctm-267602:2915363")
     implementation rfg.deobf("curse.maven:groovyscript-687577:4399621")
     implementation rfg.deobf("curse.maven:ae2-extended-life-570458:4402048")
