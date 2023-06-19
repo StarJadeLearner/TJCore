@@ -461,7 +461,6 @@ public class Chips {
                 .EUt(VA[LuV])
                 .duration(60)
                 .input(DIRTY_COATED_SAPPHIRE_WAFER)
-                .input(plate, Amethyst)
                 .notConsumable(plate, SamariumMagnetic)
                 .fluidInputs(Helium.getFluid(250))
                 .output(SAPPHIRE_SUBSTRATE_PREP)
@@ -494,7 +493,6 @@ public class Chips {
                 .fluidInputs(DistilledWater.getFluid(5))
                 .fluidOutputs(Steam.getFluid(800))
                 .chancedOutput(VIABLE_SAPPHIRE_WAFER, 5000, 0)
-                .chancedOutput(NONVIABLE_SAPPHIRE_WAFER, 5000, 0)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()
