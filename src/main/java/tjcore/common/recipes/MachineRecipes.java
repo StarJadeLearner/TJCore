@@ -17,6 +17,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.MetaTileEntityLoader;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import tjcore.common.blocks.BlockBearing;
@@ -44,8 +45,7 @@ import static net.minecraft.init.Blocks.IRON_BARS;
 import static tjcore.api.TJComponents.*;
 import static tjcore.api.material.TJMaterials.*;
 import static tjcore.common.blocks.BlockTurbineBlades.TurbineBladesType.*;
-import static tjcore.common.blocks.TJMetaBlocks.BLOCK_GENERATOR_COIL;
-import static tjcore.common.blocks.TJMetaBlocks.ROTATION_AXLE;
+import static tjcore.common.blocks.TJMetaBlocks.*;
 import static tjcore.common.metaitem.TJMetaItems.*;
 import static tjcore.common.metatileentities.TJMetaTileEntities.*;
 import static tjcore.common.recipes.GTComponents.tierCircuitNames;
@@ -275,6 +275,22 @@ public class MachineRecipes {
                 OreDictUnifier.get(dust, Redstone),
                 OreDictUnifier.get(dust, Redstone),
                 OreDictUnifier.get(dust, Redstone));
+
+        ModHandler.addShapedRecipe("bloomery", BLOOMERY.getStackForm(),
+                "MMM", "LFL", "MMM",
+                'L', OreDictUnifier.get(stick, Bronze),
+                'F', new ItemStack(Blocks.FURNACE),
+                'M', new ItemStack(TJMetaBlocks.MUD_BRICKS)
+        );
+
+        ModHandler.addShapelessRecipe("magnetic_iron_block", new ItemStack(MUD_BRICKS),
+                Blocks.SAND,
+                Blocks.DIRT,
+                Blocks.DIRT,
+                Blocks.DIRT,
+                Blocks.GRAVEL,
+                new ItemStack(Items.WATER_BUCKET)
+        );
 
 
 

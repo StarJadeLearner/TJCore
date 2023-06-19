@@ -21,6 +21,7 @@ import tjcore.common.metatileentities.multi.fusion.MegaFusion;
 import tjcore.common.metatileentities.multi.pipeline.MetaTileEntityEnergyPipeline;
 import tjcore.common.metatileentities.multi.pipeline.MetaTileEntityFluidPipeline;
 import tjcore.common.metatileentities.multi.pipeline.MetaTileEntityItemPipeline;
+import tjcore.common.metatileentities.multi.steam.Bloomery;
 import tjcore.common.metatileentities.multi.steam.PrimitiveRoaster;
 import tjcore.common.metatileentities.multi.steam.PrimitiveTreeFarmer;
 import tjcore.common.metatileentities.multi.steam.SteamAssembler;
@@ -70,6 +71,7 @@ public class TJMetaTileEntities {
     public static LargeDryer LARGE_DRYER;
     public static Loom LOOM;
     public static MetaTileEntityCVDUnit CVD_UNIT;
+    public static Bloomery BLOOMERY;
 
     public static void init() {
         STEAM_ASSEMBLER = registerMetaTileEntity(12030, new SteamAssembler(tjcoreID("steam_assembler")));
@@ -99,6 +101,7 @@ public class TJMetaTileEntities {
         GAS_TURBINE = registerMetaTileEntity(12061, new MetaTileEntityGasTurbine(tjcoreID("gas_turbine")));
         COMBUSTION_PISTON = registerMetaTileEntity(12062, new MetaTileEntityCombustionPiston(tjcoreID("combustion_piston")));
         CVD_UNIT = registerMetaTileEntity(12063, new MetaTileEntityCVDUnit(tjcoreID("cvd_unit")));
+        BLOOMERY = registerMetaTileEntity(12064, new Bloomery(tjcoreID("bloomery")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);

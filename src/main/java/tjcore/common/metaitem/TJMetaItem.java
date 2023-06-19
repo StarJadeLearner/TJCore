@@ -379,5 +379,8 @@ public class TJMetaItem extends StandardMetaItem {
         ALUMINA_MOLD = addItem(1500, "alumina_mold");
         FULL_ALUMINA_MOLD = addItem(1501, "full_alumina_mold");
         HOT_ALUMINA_MOLD = addItem(1502, "hot_alumina_mold");
+        IRON_BLOOM = addItem(1503, "iron_bloom");
+        HOT_IRON_BLOOM = addItem(1504, "hot_iron_bloom");
+        STEEL_BLOOM = addItem(1505, "steel_bloom");
     }
 }

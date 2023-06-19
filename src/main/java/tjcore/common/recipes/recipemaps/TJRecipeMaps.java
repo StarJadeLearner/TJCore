@@ -25,4 +25,5 @@ public class TJRecipeMaps {
     public static final RecipeMap<BlastRecipeBuilder> ROASTING_RECIPES = new RecipeMap<>("roaster", 0, 3, 0,3,0,3,0,3, new BlastRecipeBuilder(), false).setSlotOverlay(false, false, GuiTextures.FURNACE_OVERLAY_1).setSlotOverlay(true, false, GuiTextures.OUT_SLOT_OVERLAY).setSound(GTSoundEvents.FURNACE);
     public static final RecipeMap<PrimitiveRecipeBuilder> PRIMITIVE_ROASTING_RECIPES = new RecipeMap<>("primitive_roaster", 0, 3, 0, 3, 0, 1, 0, 1, new PrimitiveRecipeBuilder(), false).setSlotOverlay(false, false, GuiTextures.FURNACE_OVERLAY_1).setSlotOverlay(true, false, GuiTextures.OUT_SLOT_OVERLAY).setProgressBar(GuiTextures.PROGRESS_BAR_COKE_OVEN, ProgressWidget.MoveType.HORIZONTAL).setSound(GTSoundEvents.FURNACE);
     public static final RecipeMap<CVDRecipeBuilder> CVD_RECIPES = new RecipeMap<>("cvd_unit", 0, 3, 0, 3, 0, 3, 0, 3, new CVDRecipeBuilder(), false);
+    public static final RecipeMap<PrimitiveRecipeBuilder> BLOOMERY_RECIPES = new RecipeMap<>("bloomery", 0, 3, 0, 3, 0, 0,0,0, new PrimitiveRecipeBuilder(), false);
 }

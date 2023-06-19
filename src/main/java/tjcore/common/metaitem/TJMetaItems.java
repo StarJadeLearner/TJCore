@@ -361,4 +361,7 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem ALUMINA_MOLD;
     public static MetaItem<?>.MetaValueItem FULL_ALUMINA_MOLD;
     public static MetaItem<?>.MetaValueItem HOT_ALUMINA_MOLD;
+    public static MetaItem<?>.MetaValueItem IRON_BLOOM;
+    public static MetaItem<?>.MetaValueItem HOT_IRON_BLOOM;
+    public static MetaItem<?>.MetaValueItem STEEL_BLOOM;
 }

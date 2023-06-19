@@ -35,12 +35,11 @@ public class TJMetaBlocks {
     public static DraconicCasings DRACONIC_CASING;
     public static BlockBearing BLOCK_BEARING;
     public static BlockTurbineBlades TURBINE_BLADES;
-
     public static BlockRotationAxle ROTATION_AXLE;
-
     public static BlockGeneratorCoil BLOCK_GENERATOR_COIL;
     public static BlockPistonHead PISTON_HEAD;
 
+    public static BlockMudBricks MUD_BRICKS;
     public static final BlockCableLongDistance[] LONG_DIST_CABLES = new BlockCableLongDistance[1];
     
     public static void init() {
@@ -54,6 +53,10 @@ public class TJMetaBlocks {
         BLOCK_GENERATOR_COIL.setRegistryName("generator_coil");
         PISTON_HEAD = new BlockPistonHead();
         PISTON_HEAD.setRegistryName("piston_head");
+        MUD_BRICKS = new BlockMudBricks();
+        MUD_BRICKS.setRegistryName("mud_bricks");
+
+
         LONG_DIST_CABLES[0] = new BlockCableLongDistance(Insulation.CABLE_QUADRUPLE);
         LONG_DIST_CABLES[0].setRegistryName(Insulation.CABLE_QUADRUPLE.getName());
         ROTATION_AXLE = new BlockRotationAxle();
@@ -76,6 +79,7 @@ public class TJMetaBlocks {
         registerItemModel(TURBINE_BLADES);
         registerItemModel(BLOCK_BEARING);
         registerItemModel(PISTON_HEAD);
+        registerItemModel(MUD_BRICKS);
         ModelResourceLocation axlemodel = new ModelResourceLocation("tjcore:rotation_axle", "inventory");
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ROTATION_AXLE), stack -> axlemodel);
     }

@@ -20,6 +20,7 @@ tile.generator_coil.aluminium.name=Aluminium Alternator Coil
 tile.generator_coil.platinum.name=Platinum Alternator Coil
 tile.rotation_axle.name=Axle
 tile.draconic_casing.draconic_casing_normal.name=Draconic Casing
+tile.mud_bricks.name=Mud Bricks
 
 # materials
 material.bt_6=BT6
@@ -214,6 +215,7 @@ item.polyacrylonitrile.dust=Pile of Polyacrylonitrile Pulp
 # machines
 tjcore.machine.large_dryer.name=Large Dryer
 tjcore.machine.primitive_tree_farmer.name=Primitive Tree Farm
+tjcore.machine.bloomery.name=Primitive Bloomeryr
 tjcore.machine.printer.lv.name=Basic 3d Printer
 tjcore.machine.printer.mv.name=Advanced 3D Printer I
 tjcore.machine.printer.hv.name=Advanced 3D Printer II
@@ -275,6 +277,7 @@ tjcore.machine.energy_pipeline.description=Pipelines are a "wireless" p2p distri
 tjcore.machine.creative_rotation.name=Creative Rotation Source
 tjcore.machine.gearbox.name=Rotation Gearbox
 tjcore.machine.high_temp_reactor.name=High Temperature Chemical Reactor
+
 # recipemaps
 recipemap.spinning_machine.name=Spooling Recipes
 recipemap.steam_assembler.name=Steam Component Assembler
@@ -284,8 +287,7 @@ recipemap.laminator.name=Laminator Recipes
 recipemap.printer.name=3D Printing Recipes
 recipemap.roaster.name=Industrial Roasting Recipes
 recipemap.primitive_roaster.name=Primitive Roasting Recipes
-
-
+recipemap.bloomery.name=Bloomery Recipes
 
 
 # Metaitems
@@ -317,6 +319,9 @@ metaitem.quantum_preboard.name=Q-Bit Data Transfer Board
 metaitem.exotic_preboard.name=Spintronic Logistics PCB
 metaitem.cosmic_preboard.name=Leptonic Energy Transfer PCB
 metaitem.supra_preboard.name=Discrete Minkowski Space Containment
+metaitem.iron_bloom.name=Iron Bloom
+metaitem.hot_iron_bloom.name=Hot Iron Bloom
+metaitem.steel_bloom.name=Steel Bloom
 metaitem.wetphenolicpulp.name=Wet Phenolic Pulp
 metaitem.wetpressedphenolicpulp.name=Wet Phenolic Pulp
 metaitem.wetpressedphenolicsubstrate.name=Wet Pressed Phenolic Substrate

@@ -14,6 +14,8 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.oredict.OreDictionary;
 import tjcore.common.TJConfig;
 import tjcore.common.recipes.recipemaps.TJRecipeMaps;
 
@@ -28,6 +30,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static tjcore.api.material.TJMaterials.*;
 import static tjcore.common.metaitem.TJMetaItems.*;
+import static tjcore.common.recipes.recipemaps.TJRecipeMaps.BLOOMERY_RECIPES;
 
 public class MaterialRecipes {
 
@@ -353,27 +356,128 @@ public class MaterialRecipes {
                 .buildAndRegister();
     }
 
+    private static void removeFurnaceSmelting(Material material) {
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(ore, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(oreNetherrack, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(oreEndstone, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(crushed, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(crushedPurified, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(crushedCentrifuged, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(dustPure, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(dustImpure, material));
+        ModHandler.removeFurnaceSmelting(OreDictUnifier.get(dust, material));
+    }
+
     private static void registerSteelChanges() {
         GTRecipeHandler.removeAllRecipes(PRIMITIVE_BLAST_FURNACE_RECIPES);
+        removeFurnaceSmelting(Iron);
+        removeFurnaceSmelting(BrownLimonite);
+        removeFurnaceSmelting(YellowLimonite);
+        removeFurnaceSmelting(GraniticMineralSand);
+        removeFurnaceSmelting(BasalticMineralSand);
+        removeFurnaceSmelting(Pyrite);
+        removeFurnaceSmelting(Magnetite);
+        removeFurnaceSmelting(BandedIron);
+
         Material[] fuels = new Material[]{Coal, Charcoal, Coke};
-        OrePrefix[] orePrefixes = new OrePrefix[]{dust, gem, block};
+        Material[] irons = new Material[]{Iron, BrownLimonite, YellowLimonite, GraniticMineralSand, BasalticMineralSand, Pyrite, Magnetite, BandedIron};
         for (int i = 0; i < fuels.length; i++) {
-            for (int j = 0; j < orePrefixes.length; j++) {
-                PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
-                        .duration(j == 2 ? 600 : 80)
-                        .input(j == 2 ? block : ingot, Iron)
-                        .input(orePrefixes[j], fuels[i], j == 2 ? 1 : 2)
-                        .output(j == 2 ? block : ingot, Steel)
+
+            for (int j = 0; j < irons.length; j++) {
+                BLOOMERY_RECIPES.recipeBuilder()
+                        .duration(400-(i*50))
+                        .input(dust, irons[j])
+                        .input(dust, fuels[i])
+                        .output(IRON_BLOOM)
                         .buildAndRegister();
 
-                PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
-                        .duration(j == 2 ? 400 : 60)
-                        .input(j == 2 ? block : ingot, WroughtIron)
-                        .input(orePrefixes[j], fuels[i], j == 2 ? 1 : 2)
-                        .output(j == 2 ? block : ingot, Steel)
+                BLOOMERY_RECIPES.recipeBuilder()
+                        .duration(400-(i*50))
+                        .input(dust, irons[j])
+                        .input(gem, fuels[i], 3-i)
+                        .output(IRON_BLOOM)
+                        .buildAndRegister();
+
+                BLOOMERY_RECIPES.recipeBuilder()
+                        .duration(400-(i*50))
+                        .input(dust, irons[j], 9)
+                        .input(block, fuels[i], 3-i)
+                        .output(IRON_BLOOM, 9)
                         .buildAndRegister();
             }
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                    .duration(500-(i*50))
+                    .input(dust, fuels[i])
+                    .input(IRON_BLOOM)
+                    .output(HOT_IRON_BLOOM)
+                    .buildAndRegister();
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                    .duration(550-(i*50))
+                    .input(gem, fuels[i], 3-i)
+                    .input(IRON_BLOOM)
+                    .output(HOT_IRON_BLOOM)
+                    .buildAndRegister();
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                    .duration(4500-(i*500))
+                    .input(block, fuels[i], 3-i)
+                    .input(IRON_BLOOM, 9)
+                    .output(HOT_IRON_BLOOM, 9)
+                    .buildAndRegister();
+
+            BLOOMERY_RECIPES.recipeBuilder()
+                    .duration(600-(i*100))
+                    .input(gem, fuels[i])
+                    .input(HOT_IRON_BLOOM)
+                    .output(STEEL_BLOOM)
+                    .buildAndRegister();
+
+            BLOOMERY_RECIPES.recipeBuilder()
+                    .duration(700-(i*100))
+                    .input(gem, fuels[i], 3-i)
+                    .input(HOT_IRON_BLOOM)
+                    .output(STEEL_BLOOM)
+                    .buildAndRegister();
+
+            BLOOMERY_RECIPES.recipeBuilder()
+                    .duration(5400-(i*1000))
+                    .input(block, fuels[i], 3-i)
+                    .input(HOT_IRON_BLOOM, 9)
+                    .output(STEEL_BLOOM, 9)
+                    .buildAndRegister();
         }
+        ModHandler.addShapelessRecipe("iron_ingot_hammer", OreDictUnifier.get(ingot, Iron),
+                'h',
+                IRON_BLOOM
+        );
+
+        ModHandler.addShapelessRecipe("wrought_iron_ingot_hammer", OreDictUnifier.get(ingot, WroughtIron),
+                'h',
+                HOT_IRON_BLOOM
+        );
+
+        FORGE_HAMMER_RECIPES.recipeBuilder()
+                .duration(45)
+                .EUt(8)
+                .input(IRON_BLOOM)
+                .output(ingot, Iron)
+                .buildAndRegister();
+
+        FORGE_HAMMER_RECIPES.recipeBuilder()
+                .duration(45)
+                .EUt(8)
+                .input(HOT_IRON_BLOOM)
+                .output(ingot, WroughtIron)
+                .buildAndRegister();
+
+        FORGE_HAMMER_RECIPES.recipeBuilder()
+                .duration(45)
+                .EUt(8)
+                .input(STEEL_BLOOM)
+                .output(ingot, Steel)
+                .buildAndRegister();
     }
 
     private static void registerCeramics() {

@@ -13,6 +13,7 @@ import tjcore.TJValues;
 @Mod.EventBusSubscriber(modid = TJValues.MODID, value = Side.CLIENT)
 public class TJTextures {
     public static SimpleCubeRenderer Brick;
+    public static SimpleCubeRenderer MUD_BRICKS;
     public static SimpleOverlayRenderer TreeFarmerController;
     public static OrientedOverlayRenderer STEAM_ASSEMBLER_OVERLAY;
     public static SimpleOverlayRenderer ROTATION_OVERLAY;
@@ -30,7 +31,7 @@ public class TJTextures {
     public static void preInit() {
         Brick = new SimpleCubeRenderer("minecraft:blocks/brick");
         TreeFarmerController = Textures.FROST_PROOF_CASING;
-
+        MUD_BRICKS = new SimpleCubeRenderer("tjcore:blocks/casing/mud_bricks");
         STEAM_ASSEMBLER_OVERLAY = new OrientedOverlayRenderer("machines/steam_assembler", OrientedOverlayRenderer.OverlayFace.FRONT);
         ROTATION_OVERLAY = new SimpleOverlayRenderer("overlay/machine/overlay_rotation");
         GEARBOX = new SimpleCubeRenderer("tjcore:blocks/gearbox");
