@@ -1,6 +1,7 @@
 package tjcore.common.recipes.circuits;
 
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -144,7 +145,7 @@ public class Chips {
                 .duration(420)
                 .EUt(VA[LV])
                 .input(dust, Silicon, 16)
-                .notConsumable(INTEGRATED_CIRCUIT)
+                .circuitMeta(0)
                 .output(TJMetaItems.SILICON_BOULE)
                 .buildAndRegister();
 
@@ -404,6 +405,7 @@ public class Chips {
                         .output(raw[i])
                         .EUt(tierPower)
                         .duration(100)
+                        .cleanroom(CleanroomType.CLEANROOM)
                         .buildAndRegister();
             }
 
@@ -411,6 +413,7 @@ public class Chips {
                     .input(raw[i])
                     .output(baked[i])
                     .EUt(VA[LV])
+                    .cleanroom(CleanroomType.CLEANROOM)
                     .duration(600)
                     .buildAndRegister();
 
@@ -418,6 +421,7 @@ public class Chips {
                     .input(baked[i])
                     .outputs(wafer[i].getStackForm(), hardMask[i].getStackForm())
                     .EUt(VA[LV])
+                    .cleanroom(CleanroomType.CLEANROOM)
                     .duration(200)
                     .buildAndRegister();
 
@@ -426,6 +430,7 @@ public class Chips {
                     .fluidInputs(NitricAcid.getFluid(25 * (i + 1)))
                     .output(etched[i])
                     .EUt(VA[LV])
+                    .cleanroom(CleanroomType.CLEANROOM)
                     .duration(20)
                     .buildAndRegister();
 
@@ -433,6 +438,7 @@ public class Chips {
                     .input(etched[i])
                     .output(chip[i], 8)
                     .EUt(VA[LV])
+                    .cleanroom(CleanroomType.CLEANROOM)
                     .duration(20)
                     .buildAndRegister();
         }

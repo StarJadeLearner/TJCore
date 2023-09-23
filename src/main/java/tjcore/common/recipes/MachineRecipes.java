@@ -13,6 +13,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.BlockSteamCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.MetaTileEntityLoader;
@@ -74,6 +75,9 @@ public class MachineRecipes {
 
     private static void removeOldMachines() {
         ModHandler.removeRecipeByOutput(STEAM_MACERATOR_BRONZE.getStackForm());
+        ModHandler.removeRecipeByOutput(CLEANROOM.getStackForm());
+        ModHandler.removeRecipeByOutput(PASSTHROUGH_HATCH_ITEM.getStackForm());
+        ModHandler.removeRecipeByOutput(PASSTHROUGH_HATCH_FLUID.getStackForm());
         removeAllTeirs(TRANSFORMER);
         removeAllTeirs(STEAM_TURBINE);
         removeAllTeirs(COMBUSTION_GENERATOR);
@@ -266,15 +270,12 @@ public class MachineRecipes {
                 'C', new UnificationEntry(circuit, tierCircuitNames[EV])
         );
         ModHandler.addShapelessRecipe("magnetic_iron_block", OreDictUnifier.get(block, IronMagnetic),
-                OreDictUnifier.get(ingot, Iron),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone),
-                OreDictUnifier.get(dust, Redstone));
+                OreDictUnifier.get(block, Iron),
+                OreDictUnifier.get(block, Redstone),
+                OreDictUnifier.get(block, Redstone),
+                OreDictUnifier.get(block, Redstone),
+                OreDictUnifier.get(block, Redstone)
+                );
 
         ModHandler.addShapedRecipe("bloomery", BLOOMERY.getStackForm(),
                 "MMM", "LFL", "MMM",
@@ -283,7 +284,16 @@ public class MachineRecipes {
                 'M', new ItemStack(TJMetaBlocks.MUD_BRICKS)
         );
 
-        ModHandler.addShapelessRecipe("magnetic_iron_block", new ItemStack(MUD_BRICKS),
+        ModHandler.addShapedRecipe("cleanroom", CLEANROOM.getStackForm(),
+                "III", "RHR", "MCM",
+                'I', MetaItems.ITEM_FILTER,
+                'R', OreDictUnifier.get(rotor, Aluminium),
+                'H', MetaTileEntities.HULL[EV].getStackForm(),
+                'M', MetaItems.ELECTRIC_MOTOR_MV,
+                'C', new UnificationEntry(circuit, tierCircuitNames[HV])
+        );
+
+        ModHandler.addShapelessRecipe("mud_bricks", new ItemStack(MUD_BRICKS),
                 Blocks.SAND,
                 Blocks.DIRT,
                 Blocks.DIRT,
@@ -291,7 +301,6 @@ public class MachineRecipes {
                 Blocks.GRAVEL,
                 new ItemStack(Items.WATER_BUCKET)
         );
-
 
 
     }

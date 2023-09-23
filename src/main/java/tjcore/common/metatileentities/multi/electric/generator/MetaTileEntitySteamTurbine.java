@@ -81,8 +81,7 @@ public class MetaTileEntitySteamTurbine extends MultiblockWithDisplayBase implem
             textList.add(new TextComponentString("Bearing Tier: " + bearingTier));
             textList.add(new TextComponentString("Rotations Per Second: " + rps));
             textList.add(new TextComponentString("Torque: " + torque));
-            textList.add(new TextComponentString(hasFuel ? "Consumption: \nMax: " + quantity + "mb / " + (duration == 1 ? "" : duration) + "t" : "Invalid or No Fuel"));
-            textList.add(new TextComponentString(hasFuel ?"Real: "  + quantityReal + "mb / " + (duration == 1 ? "" : duration) + "t" : ""));
+            textList.add(new TextComponentString(hasFuel ? "Consumption: \nMax: " + quantityReal + "/" + quantity + "mb / " + (duration == 1 ? "" : duration) + "t" : "Invalid or No Fuel"));
         }
         super.addDisplayText(textList);
     }
@@ -258,7 +257,7 @@ public class MetaTileEntitySteamTurbine extends MultiblockWithDisplayBase implem
             }
             if (recipeTickTimer == 0) {
                 if (tankIn.getFluid() != null) {
-                    TJFuelMaps.TJFuelBurnStats stats = combustionFuels.get(tankIn.getFluid().getFluid());
+                    TJFuelMaps.TJFuelBurnStats stats = steamTurbineFuels.get(tankIn.getFluid().getFluid());
                     if (stats != null) {
                          this.rps = (float) Math.pow(4, bearingTier) / 2;
                          duration = stats.duration.apply(bearingTier);

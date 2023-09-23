@@ -56,10 +56,9 @@ public class CommonProxy {
         registry.register(ROTATION_AXLE);
         registry.register(PISTON_HEAD);
         registry.register(MUD_BRICKS);
+        registry.register(LONG_DIST_CABLE);
         for (int i = 0; i < longDistanceWireMaterials.length; i++) {
-            for (BlockCableLongDistance cable : LONG_DIST_CABLES) {
-                cable.addCableMaterial(longDistanceWireMaterials[i], new WireProperties(Math.toIntExact(V[i + 1]), 16, 0));
-            }
+            LONG_DIST_CABLE.addCableMaterial(longDistanceWireMaterials[i], new WireProperties(Math.toIntExact(V[i + 1]), 16, 0));
         }
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationAxle.class, new TileEntityRotationAxleTESR());
     }
@@ -67,7 +66,7 @@ public class CommonProxy {
     @SubscribeEvent
     public static void RegisterItemBlocks(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        for (BlockCableLongDistance cable : LONG_DIST_CABLES) registry.register(createItemBlock(cable, ItemBlockLongDistanceCable::new));
+        registry.register(createItemBlock(LONG_DIST_CABLE, ItemBlockLongDistanceCable::new));
         registry.register(createItemBlock(BLOCK_GENERATOR_COIL, VariantItemBlock::new));
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));

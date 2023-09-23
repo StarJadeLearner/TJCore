@@ -98,7 +98,7 @@ public class MetaTileEntityFluidPipeline extends MultiblockWithDisplayBase imple
     private void computePipelikeRequirement() {
         int distance = (int) Math.floor(connection.getPos().getDistance(getPos().getX(), getPos().getY(), getPos().getZ()));
         if (pipelikeRequirement < 0) {
-            pipelikeRequirement =  (distance / 10) + 5;
+                pipelikeRequirement =  (distance / 10) + 5;
             pipelikeTotal = pipelikeRequirement;
         }
     }

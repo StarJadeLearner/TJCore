@@ -215,7 +215,7 @@ item.polyacrylonitrile.dust=Pile of Polyacrylonitrile Pulp
 # machines
 tjcore.machine.large_dryer.name=Large Dryer
 tjcore.machine.primitive_tree_farmer.name=Primitive Tree Farm
-tjcore.machine.bloomery.name=Primitive Bloomeryr
+tjcore.machine.bloomery.name=Primitive Bloomery
 tjcore.machine.printer.lv.name=Basic 3d Printer
 tjcore.machine.printer.mv.name=Advanced 3D Printer I
 tjcore.machine.printer.hv.name=Advanced 3D Printer II

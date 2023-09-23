@@ -1141,25 +1141,25 @@ public class TJFirstDegreeMaterials {
                 .build();
 
         SulfuricIronSlag = new Material.Builder(25195, "sulfuric_iron_slag")
-                .ingot()
+                .dust()
                 .iconSet(MaterialIconSet.ROUGH)
                 .color(0x616B33)
                 .build();
 
         SulfuricCopperSlag = new Material.Builder(25196, "sulfuric_copper_slag")
-                .ingot()
+                .dust()
                 .iconSet(MaterialIconSet.ROUGH)
                 .color(0x975128)
                 .build();
 
         SulfuricNickelSlag = new Material.Builder(25197, "sulfuric_nickel_slag")
-                .ingot()
+                .dust()
                 .iconSet(MaterialIconSet.ROUGH)
                 .color(0x769197)
                 .build();
 
         SulfuricZincSlag = new Material.Builder(25198, "sulfuric_zinc_slag")
-                .ingot()
+                .dust()
                 .iconSet(MaterialIconSet.ROUGH)
                 .color(0xB5AECA)
                 .build();

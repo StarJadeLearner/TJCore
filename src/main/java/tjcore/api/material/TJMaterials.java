@@ -249,7 +249,7 @@ public final class TJMaterials {
     public static Material LightQuarks;
     public static Material Leptons;
     public static Material HeavyQuarkDegenerate;
-    public static Material[] longDistanceWireMaterials = new Material[]{ MVLongDistance, HVLongDistance, EVLongDistance, IVLongDistance};
+    public static Material[] longDistanceWireMaterials = new Material[]{ LVLongDistance, MVLongDistance, HVLongDistance, EVLongDistance, IVLongDistance};
 
     private TJMaterials() {/**/}
 

@@ -273,7 +273,6 @@ public class MaterialOreChains {
     }
 
     private static void PrimitiveRoasting() {
-
         Material[] fuel = new Material[]{Coke, Coal, Charcoal};
         for (int i = 0; i < fuel.length; i++) {
             PRIMITIVE_ROASTING_RECIPES.recipeBuilder()
@@ -281,7 +280,7 @@ public class MaterialOreChains {
                     .input(crushed, Sphalerite, 1)
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .output(ingot, Zinc)
-                    .chancedOutput(ingot, SulfuricZincSlag,5000, 0)
+                    .chancedOutput(dust, SulfuricZincSlag,5000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -290,7 +289,7 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Sphalerite, 1)
                     .output(ingot, Zinc)
-                    .chancedOutput(ingot, SulfuricZincSlag,9000, 0)
+                    .chancedOutput(dust, SulfuricZincSlag,9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -300,8 +299,8 @@ public class MaterialOreChains {
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .input(crushed, Chalcopyrite, 1)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag,  2500, 0)
-                    .chancedOutput(ingot, SulfuricIronSlag, 7500, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag,  2500, 0)
+                    .chancedOutput(dust, SulfuricIronSlag, 7500, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -310,8 +309,8 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Chalcopyrite, 1)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag,  5000, 0)
-                    .chancedOutput(ingot, SulfuricIronSlag, 9000, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag,  5000, 0)
+                    .chancedOutput(dust, SulfuricIronSlag, 9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -320,7 +319,7 @@ public class MaterialOreChains {
                     .input(crushed, Pyrite, 1)
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .output(ingot, Iron)
-                    .chancedOutput(ingot, SulfuricIronSlag,5000, 0)
+                    .chancedOutput(dust, SulfuricIronSlag,5000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -329,7 +328,7 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Pyrite, 1)
                     .output(ingot, Iron)
-                    .chancedOutput(ingot, SulfuricIronSlag,9000, 0)
+                    .chancedOutput(dust, SulfuricIronSlag,9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -338,8 +337,8 @@ public class MaterialOreChains {
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .input(crushed, Bornite, 1)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag, 2500, 0)
-                    .chancedOutput(ingot, SulfuricIronSlag,7500, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag, 2500, 0)
+                    .chancedOutput(dust, SulfuricIronSlag,7500, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -348,8 +347,8 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Bornite, 1)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag, 5000, 0)
-                    .chancedOutput(ingot, SulfuricIronSlag,9000, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag, 5000, 0)
+                    .chancedOutput(dust, SulfuricIronSlag,9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -358,7 +357,7 @@ public class MaterialOreChains {
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .input(crushed, Chalcocite)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag,5000, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag,5000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -367,7 +366,7 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Chalcocite)
                     .output(ingot, Copper)
-                    .chancedOutput(ingot, SulfuricCopperSlag,9000, 0)
+                    .chancedOutput(dust, SulfuricCopperSlag,9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -376,7 +375,7 @@ public class MaterialOreChains {
                     .input(gem, fuel[i], i == 2 ? 4 : i + 1)
                     .input(crushed, Pentlandite)
                     .output(ingot, Nickel)
-                    .chancedOutput(ingot, SulfuricNickelSlag, 5000, 0)
+                    .chancedOutput(dust, SulfuricNickelSlag, 5000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
                     .buildAndRegister();
 
@@ -385,45 +384,9 @@ public class MaterialOreChains {
                     .EUt(VA[MV])
                     .input(crushed, Pentlandite)
                     .output(ingot, Nickel)
-                    .chancedOutput(ingot, SulfuricNickelSlag, 9000, 0)
+                    .chancedOutput(dust, SulfuricNickelSlag, 9000, 0)
                     .fluidOutputs(SulfuricFlueGas.getFluid(100))
-                    .buildAndRegister();
-
-            GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ingot, SulfuricCopperSlag));
-            GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ingot, SulfuricZincSlag));
-            GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ingot, SulfuricIronSlag));
-            GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ingot, SulfuricNickelSlag));
-
-            MACERATOR_RECIPES.recipeBuilder()
-                    .duration(85)
-                    .EUt(8)
-                    .input(ingot, SulfuricCopperSlag)
-                    .output(dust, Sulfur)
-                    .chancedOutput(dust, Copper, 5000,0)
-                    .buildAndRegister();
-
-            MACERATOR_RECIPES.recipeBuilder()
-                    .duration(85)
-                    .EUt(8)
-                    .input(ingot, SulfuricZincSlag)
-                    .output(dust, Sulfur)
-                    .chancedOutput(dust, Zinc, 5000,0)
-                    .buildAndRegister();
-            MACERATOR_RECIPES.recipeBuilder()
-                    .duration(85)
-                    .EUt(8)
-                    .input(ingot, SulfuricIronSlag)
-                    .output(dust, Sulfur)
-                    .chancedOutput(dust, Iron, 5000,0)
-                    .buildAndRegister();
-            MACERATOR_RECIPES.recipeBuilder()
-                    .duration(85)
-                    .EUt(8)
-                    .input(ingot, SulfuricNickelSlag)
-                    .output(dust, Sulfur)
-                    .chancedOutput(dust, Nickel, 5000,0)
                     .buildAndRegister();
             }
-
     }
 }

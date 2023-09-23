@@ -120,7 +120,7 @@ public class MetaTileEntityAlternator extends MultiblockWithDisplayBase implemen
                         "CCC",
                         "SSS")
                 .aisle( "#O#",
-                        "#S#",
+                        "#O#",
                         "#T#")
                 .where('F', states(MetaBlocks.FRAMES.get(Steel).getBlock(Steel)))
                 .where('#', any())
@@ -154,11 +154,10 @@ public class MetaTileEntityAlternator extends MultiblockWithDisplayBase implemen
             temp = (int)(torque*100.0);
             double shortTorque = ((double)temp)/100.0;
             textList.add(new TextComponentString("Coil Tier: " + (coilTier + 1)));
-            textList.add(new TextComponentString("Maximum EU Output: " + outputCap));
+            textList.add(new TextComponentString("EU Output: " + shortOut + "/" + outputCap));
             if (axleWhole != null) {
                 textList.add(new TextComponentString("Rotations / Second: " + shortRPS ));
                 textList.add(new TextComponentString("Torque: " + shortTorque ));
-                textList.add(new TextComponentString("Real EU Output: " + shortOut));
             } else {
                 textList.add(new TextComponentString("Axle Disconnected!"));
             }
